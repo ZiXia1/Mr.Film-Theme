@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>最新{$obj.type_name}-推荐{$obj.type_name}-第{$param.page}页筛选 - {$maccms.site_name}</title>
+    <meta name="keywords" content="{$obj.type_key}" />
+    <meta name="description" content="{$obj.type_des}" />
+    {include file="public/include"}
+</head>
+<body>
+<body class="library page">
+{include file="public/header"}
+
+<main id="index-main" class="wrapper">
+	<div class="content">
+		
+		<div class="page-heading">
+			<h1 class="page-title">影片库</h1>
+			<div class="box">
+				
+				<div class="library-box scroll-box">
+					<div class="scroll-content">
+						
+						<a class="library-item library-item-first {if condition="$param['class'] eq ''"}selected{/if}" href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>'','order'=>$param['order'],'by'=>$param['by'] ],'show')}">全部类型</a>
+                
+						<div class="library-list">
+			                {empty name="$obj.type_extend.class"}
+			                {maccms:foreach name=":explode(',',$obj.parent.type_extend.class)" id="vo2" key="key2"}
+			                <a class="library-item {if condition="$param['class'] eq $vo2"}selected{/if}" href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$vo2,'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a>
+			                {/maccms:foreach}
+			                {else /}
+			                {maccms:foreach name=":explode(',',$obj.type_extend.class)" id="vo2" key="key2"}
+			                <a class="library-item {if condition="$param['class'] eq $vo2"}selected{/if}" href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$vo2,'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a>
+			                {/maccms:foreach}
+			                {/empty}
+						</div>
+						
+					</div>
+				</div>
+				
+				<div class="library-box scroll-box">
+					<div class="scroll-content">
+						
+						<a class="library-item library-item-first {if condition="$param['area'] eq ''"}selected{/if}" href="{:mac_url_type($obj,['area'=>'','lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">全部地区</a>
+                
+						<div class="library-list">
+			                {empty name="$obj.type_extend.area"}
+			                {maccms:foreach name=":explode(',',$obj.parent.type_extend.area)" id="vo2" key="key2"}
+			                <a class="library-item {if condition="$param['area'] eq $vo2"}selected{/if}" href="{:mac_url_type($obj,['area'=>$vo2,'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a>
+			                {/maccms:foreach}
+			                {else /}
+			                {maccms:foreach name=":explode(',',$obj.type_extend.area)" id="vo2" key="key2"}
+			                <a class="library-item {if condition="$param['area'] eq $vo2"}selected{/if}" href="{:mac_url_type($obj,['area'=>$vo2,'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a>
+			                {/maccms:foreach}
+			                {/empty}
+						</div>
+						
+					</div>
+				</div>
+				
+				<div class="library-box scroll-box">
+					<div class="scroll-content">
+						
+						<a class="library-item library-item-first {if condition="$param['lang'] eq ''"}selected{/if}" href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>'','year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">全部语言</a>
+                
+						<div class="library-list">
+			                {empty name="$obj.type_extend.lang"}
+			                {maccms:foreach name=":explode(',',$obj.parent.type_extend.lang)" id="vo2" key="key2"}
+			                <a class="library-item {if condition="$param['lang'] eq $vo2"}selected{/if}" href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$vo2,'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a>
+			                {/maccms:foreach}
+			                {else /}
+			                {maccms:foreach name=":explode(',',$obj.type_extend.lang)" id="vo2" key="key2"}
+			                <a class="library-item {if condition="$param['lang'] eq $vo2"}selected{/if}" href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$vo2,'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a>
+			                {/maccms:foreach}
+			                {/empty}
+						</div>
+						
+					</div>
+				</div>
+				
+				<div class="library-box scroll-box">
+					<div class="scroll-content">
+						
+						<a class="library-item library-item-first {if condition="$param['year'] eq ''"}selected{/if}" href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>'','level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">全部年代</a>
+                
+						<div class="library-list">
+			                {empty name="$obj.type_extend.year"}
+			                {maccms:foreach name=":explode(',',$obj.parent.type_extend.year)" id="vo2" key="key2"}
+			                <a class="library-item {if condition="$param['year'] eq $vo2"}selected{/if}" href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$vo2,'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a>
+			                {/maccms:foreach}
+			                {else /}
+			                {maccms:foreach name=":explode(',',$obj.type_extend.year)" id="vo2" key="key2"}
+			                <a class="library-item {if condition="$param['year'] eq $vo2"}selected{/if}" href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$vo2,'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a>
+			                {/maccms:foreach}
+			                {/empty}
+						</div>
+						
+					</div>
+				</div>
+				
+				<div class="library-box scroll-box">
+					<div class="scroll-content">
+						
+						<a class="library-item library-item-first {if condition="$param['letter'] eq ''"}selected{/if}" href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>'','state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">字母查找</a>
+                
+						<div class="library-list">
+							{maccms:foreach name=":explode(',','A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,0~9')" id="vo2" key="key2"}
+								<a  class="library-item {if condition="$param['letter'] eq $vo2"}selected{/if}" href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$vo2,'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a>
+							{/maccms:foreach}
+						</div>
+						
+					</div>
+				</div>
+				
+				<div class="library-box scroll-box">
+					<div class="scroll-content">
+				        <a href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>'time' ],'show')}" class="library-item library-item-first {if condition="$param.by eq '' || $param.by eq 'time'"}selected{/if}">时间排序</a>
+                
+						<div class="library-list">
+				        	<a href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>'hits' ],'show')}" class="library-item {if condition="$param.by eq 'hits'"}selected{/if}">人气排序</a>
+				        	
+							<a href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>'score' ],'show')}" class="library-item {if condition="$param.by eq 'score'"}selected{/if}">评分排序</a>
+						</div>
+						
+					</div>
+				</div>
+				<div class="library-box">
+					<h2 class="library-stat">影片库为你选出 <span class="important"></span> 部影片</h2>
+				</div>
+			</div>
+		</div>
+		
+		<div class="module">
+			
+			<div class="module-list">
+				<div class="module-items">
+					
+		            {maccms:vod num="96" paging="yes" pageurl="vod/show" type="current" order="asc" by="time"}
+                    <div class="module-item">
+					    <div class="module-item-cover">
+					        <div class="module-item-pic">
+					            <a href="{:mac_url_vod_play($vo)}" title="{$vo.vod_name}">
+					                <i class="icon-play"></i>
+					            </a>
+					            <img class="lazyloaded" src="{:mac_url_img($vo.vod_pic)}" data-src="{:mac_url_img($vo.vod_pic)}" alt="{$vo.vod_name}"/>
+					            <div class="loading"></div>
+					        </div>
+					        <div class="module-item-caption">
+					            <span>{$vo.vod_year}</span>
+					            <span class="video-class">{$vo.type.type_name}</span>
+					            <span class="video-class">{$vo.vod_area}</span>
+					            <span>{$vo.vod_area}</span>
+					        </div>
+					        <div class="module-item-content">
+					            <div class="module-item-style video-name">
+									<a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a>
+					            </div>
+					            <div class="module-item-style video-tag">
+					                {maccms:foreach name=":explode(',',$vo.vod_actor)" id="vo2" key="key2"}
+									     {$vo2|mac_url_create='actor','vod','search'}
+									{/maccms:foreach}
+					            </div>
+					            <div class="module-item-style video-text">
+					                {$vo.vod_blurb}
+					            </div>
+					        </div>
+					    </div>
+					    <div class="module-item-titlebox">
+					        <a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a>
+					    </div>
+					    <div class="module-item-text">
+				        	{empty name="$vo.vod_lang"}
+				        		-
+				        	{else /}
+				        		{$vo.vod_lang}
+				        	{/empty}
+					    </div>
+					</div>
+		            {/maccms:vod}
+					
+				</div>
+			</div>
+			
+			<div class="module-footer">
+				{include file="public/paging"}
+			</div>
+		</div>
+	</div>
+</main>
+<script>
+    $('.important').html('{$__PAGING__.record_total}');
+</script>
+{include file="public/foot"}
+</body>
+</html>

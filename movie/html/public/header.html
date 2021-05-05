@@ -1,0 +1,118 @@
+<header id="header" class="wrapper">
+    <div class="nav content">
+        <div class="brand">
+            <a href="/" class="logo" title="{$maccms.site_name}">
+                <img src="https://cdn.jsdelivr.net/gh/imdianying/im@2021032601/statics/images/logo.png"
+                alt="{$maccms.site_name}">
+            </a>
+        </div>
+        <div class="nav-search">
+            <div class="search-box">
+                <input class="search-input ac_wd" id="txtKeywords" type="text" name="wd" autocomplete="off" placeholder="搜索电影、电视剧、综艺、动漫、演员" onfocus="this.placeholder=''" onkeydown='if(event.keyCode==13){gosubmit();}' onblur="this.placeholder='搜索电影、电视剧、综艺、动漫、演员'">
+                <div class="search-drop">
+                    <div class="drop-content-items ac_hot none">
+                        <div class="list-item list-item-title">
+                            <strong>
+                                大家都在搜这些影片
+                            </strong>
+                        </div>
+                        <div class="search-tag">
+				            {maccms:foreach name=":explode(',',$maccms.search_hot)" id="vo2" key="key2"}
+				            <a href="{:mac_url('vod/search',['wd'=>$vo2])}" class="hot">
+	                            <i class="icon-hot"></i>
+					            {$vo2}
+					        </a>
+				            {/maccms:foreach}
+                        </div>
+                    </div>
+                </div>
+                <button class="search-btn search-go">
+                    <i class="icon-search"></i>
+                </button>
+                <button class="cancel-btn">取消</button>
+            </div>
+        </div>
+        <nav class="nav-menu">
+            <ul class="nav-menu-items">
+	            
+                <li class="nav-menu-item">
+                    <a href="{$maccms.path}" title="{$maccms.site_name}首页">
+	                    <span class="nav-menu-item-name">首页</span>
+	                </a>
+                </li>
+	            {maccms:type ids="parent" order="asc" by="sort" mid="1"}
+	            <li class="nav-menu-item {$vo.type_id}={$vo.type_pid} {if condition="($vo.type_id eq $GLOBALS['type_id'] || $vo.type_id eq $GLOBALS['type_pid'])"} selected{/if}">
+	            	<a class="nav-link" href="{:mac_url_type($vo)}">
+		            	<span class="nav-menu-item-name">{$vo.type_name}</span>
+		            </a>
+	            </li>
+	            {/maccms:type}
+	            <li class="nav-menu-item drop">
+                    <span class="nav-menu-icon">
+                        <i class="icon-all"></i>
+                    </span>
+                    <div class="drop-content sub-block">
+                        <div class="drop-content-box grid-box">
+                            <ul class="drop-content-items grid-items">
+                                <li class="grid-item">
+                                    <a href="{$maccms.path}">
+                                        <i class="icon-home"></i>
+                                        <div class="grid-item-name" title="{$maccms.site_name}首页">
+                                            首页
+                                        </div>
+                                    </a>
+                                </li>
+	                            {maccms:type ids="parent" order="asc" by="sort" mid="1"}
+                                <li class="grid-item">
+                                    <a href="{:mac_url_type($vo)}" title="{$vo.type_name}">
+                                        {if condition="$vo.type_id eq 1"}
+                                        <i class="icon-cate-dy"></i>
+                                        {elseif condition="$vo.type_id eq 2"}
+                                        <i class="icon-cate-ds"></i>
+                                        {elseif condition="$vo.type_id eq 4"}
+                                        <i class="icon-cate-dm"></i>
+                                        {else}
+                                        <i class="icon-cate-zy"></i>
+                                        {/if}
+                                        <div class="grid-item-name">
+                                            {$vo.type_name}
+                                        </div>
+                                    </a>
+                                </li>
+	                            {/maccms:type}
+                                <li class="grid-item grid-more">
+                                    <a href="/pianku-dianying-----------/" title="查看全部影片">
+                                        <div class="grid-item-name">
+                                            全部影片
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="shortcuts-mobile-overlay"></div>
+                </li>
+                <li class="space-line-bold"></li>
+                <li class="nav-menu-item drop">
+                    <span class="nav-menu-icon">
+                        <i class="icon-watch-history">
+                        </i>
+                    </span>
+                    <div class="drop-content drop-history">
+                        <div class="drop-content-box">
+                            <ul class="drop-content-items" id="history">
+                                <li class="list-item list-item-title">
+                                    <a href="" class="playlist historyclean">
+                                        <i class="icon-clear"></i>
+                                    </a>
+                                    <strong>我的观影记录</strong>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="shortcuts-mobile-overlay"></div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>

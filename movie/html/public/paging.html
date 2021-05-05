@@ -1,0 +1,19 @@
+{if condition="$__PAGING__.record_total gt 0"}
+<div id="page">
+    <a class="page-number page-previous" href="{$__PAGING__.page_url|mac_url_page=1}" title="首页">首页</a>
+    <a class="page-number page-previous" href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_prev}" title="上一页">上一页</a>
+    {maccms:foreach name="$__PAGING__.page_num" id="num"}
+	    {if condition="$__PAGING__['page_current'] eq $num"}
+	    	<span class="page-number page-current display">{$num}</span>
+	    {else}
+	    	<a class="page-number display" href="{$__PAGING__.page_url|mac_url_page=$num}" title="第{$num}页" >{$num}</a>
+	    {/if}
+    {/maccms:foreach}
+    <a class="page-number page-next none" href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_next}" title="下一页">下一页</a>
+    <a class="page-number page-next none" href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_total}" title="尾页">尾页</a>
+</div>
+{else/}
+<div class="wrap">
+    <h1>没有找到匹配数据</h1>
+</div>
+{/if}

@@ -1,0 +1,131 @@
+<head><meta name="referrer" content="always"></head>
+<meta name="referrer" content="no-referrer" />
+<link rel="shortcut icon" href="{$maccms.path_tpl}logo.png" />
+<link rel="icon" href="{$maccms.path_tpl}logo.png" type="image/png" />
+<link href="{$maccms.path_tpl}css/style.css" rel="stylesheet" type="text/css" />
+<script src="{$maccms.path}static/js/jquery.js"></script>
+<script src="{$maccms.path}static/js/jquery.lazyload.js"></script>
+<script src="{$maccms.path}static/js/jquery.autocomplete.js"></script>
+<script src="{$maccms.path_tpl}js/jquery.superslide.js"></script>
+<script src="{$maccms.path_tpl}js/jquery.lazyload.js"></script>
+<script src="{$maccms.path_tpl}js/jquery.base.js"></script>
+<script src="{$maccms.path_tpl}js/clipboard.min.js"></script>
+<script>var maccms={"path":"__ROOT__","mid":"{$maccms['mid']}","aid":"{$maccms['aid']}","url":"{$maccms['site_url']}","wapurl":"{$maccms['site_wapurl']}","mob_status":"{$maccms['mob_status']}"};</script>
+<script src="{$maccms.path}static/js/home.js"></script>
+<script type="text/javascript">
+$(function () {
+	mobile_flag = IsMobile();
+	
+	if ( mobile_flag ) {
+	
+		$(".search-input").click(function() {
+			$('body').addClass('mobile-open');
+			$(this).addClass('search-focus');
+			$('.search-btn').addClass('search-focus');
+			$('.drop-content-items').removeClass('none');
+		});		
+	
+		$(".search-box .cancel-btn").click(function(){
+			$('body').removeClass('mobile-open');   
+			$(".search-input").removeClass('search-focus');
+			$('.search-btn').removeClass('search-focus');
+			$('.drop-content-items').addClass('none');
+		});
+		
+	} else {
+	
+		$(".search-input").click(function() {
+			$(this).addClass('search-focus');
+			$('.search-btn').addClass('search-focus');
+			$('.drop-content-items').removeClass('none');
+		});
+		
+		$(".search-input").blur(function() {	    
+		    setTimeout(function () {
+				$(".search-input").removeClass('search-focus');
+				$('.search-btn').removeClass('search-focus');
+				$('.drop-content-items').addClass('none');
+		    }, 300);	    
+		});
+	}
+	
+	$(".historyclean").click(function() {
+		MAC.Cookie.Del('mac_history');
+	});
+    
+    var jsondata = [];
+    if(this.Json){
+        jsondata = this.Json;
+    }else{
+        var jsonstr = MAC.Cookie.Get('mac_history');
+        if(jsonstr != undefined){
+            jsondata = eval(jsonstr);
+        }
+    }
+
+    html = '';
+
+    if(jsondata.length > 0){
+        for($i=0; $i<jsondata.length; $i++){
+            html +='<li class="list-item"><a href="'+jsondata[$i].link+'" class="list-item-link"><i class="icon-play"></i><span>'+jsondata[$i].list+'</span>'+jsondata[$i].name+'</a></li>';
+        }
+    } else {
+        html +='<li class="list-item"><a class="list-item-link">暂无浏览记录</a></li>';
+    }
+
+    $('.drop-history .drop-content-items').append(html);
+    
+	var clipboard = new ClipboardJS('.share-btn');
+	
+	clipboard.on('success', function(e) {
+	    $('body').append('<div class="shortcuts-box" style="display: block;"><div id="shortcuts-info">播放地址复制成功，分享给好朋友一起看～</div></div>');
+	    
+	    setTimeout(function () { 
+	        $('.shortcuts-box').fadeOut();
+	    }, 1000);
+    
+        e.clearSelection();
+    });
+    
+    $('.search-btn').click(function(){
+	    
+	   gosubmit();
+	   
+    });
+});
+
+function gosubmit() {	    
+    search = $('.search-input').val();
+    
+    $(window).attr("location","{:mac_url('vod/search')}?wd="+search);
+}
+
+//判断是否是手机
+function IsMobile() {
+    var isMobile = {
+        Android: function () {
+            return navigator.userAgent.match(/Android/i) ? true : false;
+        },
+        BlackBerry: function () {
+            return navigator.userAgent.match(/BlackBerry/i) ? true : false;
+        },
+        iOS: function () {
+            return navigator.userAgent.match(/iPhone|iPad|iPod/i) ? true : false;
+        },
+        Windows: function () {
+            return navigator.userAgent.match(/IEMobile/i) ? true : false;
+        },
+        any: function () {
+            return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Windows());
+        }
+    };
+
+    return isMobile.any(); //是移动设备
+}
+function go_debugger() {
+	debugger;
+}
+$(document).ready(function(){
+	go_debugger();
+});
+</script>

@@ -1,0 +1,145 @@
+		<div class="module module-bg">
+			<div class="module-heading">
+				<h2 class="module-title">喜欢看<strong>“{$obj.vod_name}”</strong>的人也喜欢</h2>
+			</div>
+			<div class="module-list module-lines-list">
+				<div class="module-items">	
+					{maccms:vod num="24" type="current" order="desc" by="time"}
+                    <div class="module-item">
+					    <div class="module-item-cover">
+					        <div class="module-item-pic">
+					            <a href="{:mac_url_vod_play($vo)}" title="{$vo.vod_name}">
+					                <i class="icon-play"></i>
+					            </a>
+					            <img class="lazyloaded" src="{:mac_url_img($vo.vod_pic)}" data-src="{:mac_url_img($vo.vod_pic)}" alt="{$vo.vod_name}"/>
+					            <div class="loading"></div>
+					        </div>
+					        <div class="module-item-caption">
+					            <span>{$vo.vod_year}</span>
+					            <span class="video-class">{$vo.type.type_name}</span>
+					            <span class="video-class">{$vo.vod_area}</span>
+					            <span>{$vo.vod_area}</span>
+					        </div>
+					        <div class="module-item-content">
+					            <div class="module-item-style video-name">
+									<a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a>
+					            </div>
+					            <div class="module-item-style video-tag">
+					                {maccms:foreach name=":explode(',',$vo.vod_actor)" id="vo2" key="key2"}
+									     {$vo2|mac_url_create='actor','vod','search'}
+									{/maccms:foreach}
+					            </div>
+					            <div class="module-item-style video-text">
+					                {$vo.vod_blurb}
+					            </div>
+					        </div>
+					    </div>
+					    <div class="module-item-titlebox">
+					        <a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a>
+					    </div>
+					    <div class="module-item-text">
+					        {if condition="$vo.vod_serial gt 0"}
+						    	更新至 {$vo.vod_serial}
+							        {if condition="$vo.type_id eq 4"}
+							        	话
+							        {elseif condition="$vo.type_id eq 3"}
+							        	期
+							        {else}
+							        	集
+							        {/if}
+						        
+						        	{if condition="$vo.type_id gt 3"}
+								        {if condition="$vo.vod_total gt 0"}
+								        	/ 共 {$vo.vod_total}
+								        {if condition="$vo.type_id eq 4"}
+								        	话
+								        {elseif condition="$vo.type_id eq 3"}
+								        	期
+								        {else}
+								        	集
+								        {/if}
+							        {/if}
+							        
+						        {/if}
+					        {else}
+					        	{$vo.vod_lang}
+					        {/if}							        
+					    </div>
+					</div>
+                    {/maccms:vod}
+				</div>
+			</div>
+		</div>
+		<!-- Module End -->
+		
+		<div class="module module-bg">
+			<div class="module-heading">
+				<h2 class="module-title">与<strong>“{$obj.vod_name}”</strong>关联的视频</h2>
+			</div>
+			<div class="module-list module-lines-list">
+				<div class="module-items">	
+                    {maccms:vod num="24" ids="'.$obj['vod_rel_vod'].'" order="desc" by="time"}
+                    <div class="module-item">
+					    <div class="module-item-cover">
+					        <div class="module-item-pic">
+					            <a href="{:mac_url_vod_play($vo)}" title="{$vo.vod_name}">
+					                <i class="icon-play"></i>
+					            </a>
+					            <img class="lazyloaded" src="{:mac_url_img($vo.vod_pic)}" data-src="{:mac_url_img($vo.vod_pic)}" alt="{$vo.vod_name}"/>
+					            <div class="loading"></div>
+					        </div>
+					        <div class="module-item-caption">
+					            <span>{$vo.vod_year}</span>
+					            <span class="video-class">{$vo.type.type_name}</span>
+					            <span class="video-class">{$vo.vod_area}</span>
+					            <span>{$vo.vod_area}</span>
+					        </div>
+					        <div class="module-item-content">
+					            <div class="module-item-style video-name">
+									<a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a>
+					            </div>
+					            <div class="module-item-style video-tag">
+					                {$vo.vod_actor}
+					            </div>
+					            <div class="module-item-style video-text">
+					                {$vo.vod_blurb}
+					            </div>
+					        </div>
+					    </div>
+					    <div class="module-item-titlebox">
+					        <a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a>
+					    </div>
+					    <div class="module-item-text">
+					        {if condition="$vo.vod_serial gt 0"}
+						    	更新至 {$vo.vod_serial}
+							        {if condition="$vo.type_id eq 4"}
+							        	话
+							        {elseif condition="$vo.type_id eq 3"}
+							        	期
+							        {else}
+							        	集
+							        {/if}
+						        
+						        	{if condition="$vo.type_id gt 3"}
+								        {if condition="$vo.vod_total gt 0"}
+								        	/ 共 {$vo.vod_total}
+								        {if condition="$vo.type_id eq 4"}
+								        	话
+								        {elseif condition="$vo.type_id eq 3"}
+								        	期
+								        {else}
+								        	集
+								        {/if}
+							        {/if}
+							        
+						        {/if}
+					        {else}
+					        	{$vo.vod_lang}
+					        {/if}							        
+					    </div>
+					</div>
+                    {/maccms:vod}
+				</div>
+			</div>
+		</div>
+		<!-- Module End -->

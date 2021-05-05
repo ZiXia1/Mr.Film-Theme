@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>《{$obj.vod_name}》高清版在线观看-迅雷下载-剧情片电影-{$maccms.site_name}</title>
+    <meta name="keywords" content="{$obj.vod_name}在线收看,{$obj.vod_name}迅雷下载" />
+    <meta name="description" content="{$obj.vod_name}剧情:{$obj.vod_blurb}" />
+    {include file="public/include"}
+</head>
+<body class="view page">
+	
+{include file="public/header"}
+
+<main id="index-main" class="wrapper">
+	<div class="content">
+		
+		<div class="box view-heading">
+			<div class="mobile-play">
+				<div class="module-item-cover">
+					<div class="module-item-pic" itemprop="image">
+		                <img class="lazyloaded" alt="{$obj.vod_name}" data-src="{:mac_url_img($obj.vod_pic)}" src="{:mac_url_img($obj.vod_pic)}">
+					</div>
+				</div>
+			</div>
+		    <div class="video-cover">
+		        <div class="module-item-cover">
+		            <div class="module-item-pic">
+		                <a href="{:mac_url_vod_play($obj)}" title="立刻播放{$obj.vod_name}" itemprop="url">
+		                    <i class="icon-play"></i>
+		                </a>
+		                <img class="lazyloaded" alt="{$obj.vod_name}" data-src="{:mac_url_img($obj.vod_pic)}" src="{:mac_url_img($obj.vod_pic)}">
+		                <div class="loading"></div>
+		            </div>
+		        </div>
+		    </div>
+		    <div class="video-info">
+		        <div class="video-info-header">
+		            <h1 class="page-title" itemprop="name">{$obj.vod_name}</h1>
+                    {if condition="$obj.vod_en != ''"}
+		            <h2 class="video-subtitle" style="display: none" title="又名：{$obj.vod_en}" itemprop="alternateName">{$obj.vod_en}</h2>
+		            {/if}
+		            <div class="video-info-aux">
+		                <div class="tag-link">
+		                    <div class="video-tag-icon">
+                                {if condition="$obj.type_id_1 eq 1"}
+                                	<i class="icon-cate-dy"></i>
+                                {elseif condition="$obj.type_id_1 eq 2"}
+                                	<i class="icon-cate-ds"></i>
+                                {elseif condition="$obj.type_id_1 eq 4"}
+                                	<i class="icon-cate-dm"></i>
+                                {else}
+                                	<i class="icon-cate-zy"></i>
+                                {/if}
+		                    </div>
+		                    {$obj.type_1.type_name}
+		                </div>
+		                <div class="tag-link">
+			                {$obj.vod_year|mac_url_create='year'}
+		                </div>
+		                <div class="tag-link">
+		                    {$obj.vod_class|mac_url_create='class'}
+		                </div>
+		                <div class="tag-link">
+		                    {$obj.vod_area|mac_url_create='area'}
+		                </div>
+		            </div>
+		            <a href="{:mac_url_vod_play($obj)}" class="btn-important btn-large shadow-drop video-info-play" title="立刻播放{$obj.vod_name}">
+		                <i class="icon-play"></i>
+		                <strong>立即播放</strong>
+		            </a>
+		        </div>
+		        <div class="video-info-main">
+		            <div class="video-info-items" itemscope="" itemprop="director" itemtype="http://schema.org/Person">
+		                <span class="video-info-itemtitle">导演：</span>
+		                <div class="video-info-item video-info-actor">
+		                    {$obj.vod_director|mac_url_create='director','vod','search'}
+		                </div>
+		            </div>
+		            <div class="video-info-items" itemscope="" itemprop="actor" itemtype="http://schema.org/Person">
+		                <span class="video-info-itemtitle">主演：</span>
+		                <div class="video-info-item video-info-actor">
+		                    {$obj.vod_actor|mac_url_create='actor','vod','search','<span class="slash">/</span>'}
+		                </div>
+		            </div>
+		            <div class="video-info-items">
+		                <span class="video-info-itemtitle">剧情：</span>
+		                <div class="video-info-item video-info-content" itemprop="description">
+		                    {$obj.vod_content|mac_url_content_img}
+		                </div>
+		            </div>
+		        </div>
+		        <div class="video-info-footer display">
+		            <div class="video-info-share">
+		                <button class="share-btn" data-clipboard-text="{$maccms.site_url}{:mac_url_vod_detail($obj)} 我正在电影先生观看《{$obj.vod_name}》，推荐给你一起看！">
+		                    好影片，与好朋友一起分享
+		                    <i class="icon-happy">
+		                    </i>
+		                </button>
+		            </div>
+		            <a href="{:mac_url_vod_play($obj)}" class="btn-important btn-large shadow-drop"
+		            title="立刻播放{$obj.vod_name}">
+		                <i class="icon-play"></i>
+		                <strong>
+		                    立即播放
+		                </strong>
+		            </a>
+		        </div>
+		    </div>
+		</div>
+		<script type="text/javascript">
+		$(function () {
+			$('.module-tab-item:first').addClass('selected');
+			$('.module-player-list:first').addClass('selected');
+			
+			$('.module-tab-item').click(function() {
+				
+				var gid = $(this).data('id');				
+				$('.module-tab-item').removeClass('selected');
+				$('.module-player-list').removeClass('selected');
+				
+				$(this).addClass('selected');
+				$('#glist-'+gid).addClass('selected');
+				
+			});
+			if ( mobile_flag ) {
+				$('.module-player-tab .module-tab-name').click(function(){
+					$('.module-player-tab').addClass('module-tab-drop');
+				});
+				
+				$('.close-drop').click(function(){
+					$('.module-player-tab').removeClass('module-tab-drop');
+					$('.module-sorttab').removeClass('module-tab-drop');
+				});
+				
+				$('.module-sorttab .module-tab-name').click(function(){
+					$('.module-sorttab').addClass('module-tab-drop');
+				});
+				
+				$('.module-tab-item').click(function(){
+					name = $(this).data('name');
+					$('.module-tab-value').text(name);
+					$('.module-player-tab').removeClass('module-tab-drop');
+					$('.module-sorttab').removeClass('module-tab-drop');
+				});
+			}
+			
+		});
+		</script>
+		<div class="module">
+			<div class="module-heading">
+				<h2 class="module-title" title="{$obj.vod_name}的在线观看列表">在线观看</h2>
+				<div class="module-tab module-player-tab">
+					<label class="module-tab-name">
+						<span class="module-tab-value">切换节点</span>
+						<i class="icon-arrow-bottom-o"></i>
+					</label>
+					<div class="module-tab-items">
+						<div class="module-tab-title">
+							播放节点列表
+							<span class="close-drop">
+								<i class="icon-close-o"></i>
+							</span>
+						</div>
+						<div class="module-tab-content">							
+							{maccms:foreach name="obj.vod_play_list" id="vo" key="key"}
+							<div class="module-tab-item tab-item" data-id="{$key}" data-name="{$vo.player_info.show}">
+								<span>{$vo.player_info.show}</span>
+								<small>{$vo.url_count}</small>
+							</div>
+							{/maccms:foreach}							
+						</div>
+					</div>
+				</div>
+				<div class="shortcuts-mobile-overlay"></div>
+			</div>
+						
+			{maccms:foreach name="obj.vod_play_list" id="vo" key="key"}
+			<div class="module-list module-player-list tab-list sort-list" id="glist-{$key}">
+				<div class="module-tab module-sorttab">
+					{if condition="$vo.url_count gt 4"}
+					<label class="module-tab-name">
+						<i class="icon-all"></i>
+					</label>
+					{/if}
+					<div class="module-tab-items">
+						<div class="module-tab-title">
+							选集
+							<span class="close-drop">
+								<i class="icon-close-o"></i>
+							</span>
+							<a class="desc sort-button" style="display: none;" href="javascript:void(0);" data="">
+								<i class="icon-sort"></i> 排序
+							</a>
+						</div>
+						<div class="module-tab-content">
+							<div class="module-blocklist">
+								<div class="sort-item">
+									{maccms:foreach name="vo.urls" id="vo2" key="key2"}
+									<a href="{:mac_url_vod_play($obj,['sid'=>$vo.sid,'nid'=>$vo2.nid])}" title="播放{$obj.vod_name}{$vo2.name}">
+										<span>{$vo2.name}</span>
+									</a>
+									{/maccms:foreach}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="shortcuts-mobile-overlay"></div>
+				<div class="module-blocklist scroll-box scroll-box-y">
+					<div class="scroll-content">
+						{maccms:foreach name="vo.urls" id="vo2" key="key2"}
+					        <a href="{:mac_url_vod_play($obj,['sid'=>$vo.sid,'nid'=>$vo2.nid])}" target="{$vo.player_info.target}" >
+						        {$vo2.name}
+						    </a>
+					    {/maccms:foreach}						
+					</div>
+				</div>
+			</div>
+			{/maccms:foreach}
+		</div>
+		
+		<div class="module" style="display: none;">
+			<div class="module-heading">
+				<h2 class="module-title" title="{$obj.vod_name}的影片下载列表">影片下载</h2>
+				<div class="module-tab module-player-tab"></div>
+			</div>
+			<div class="module-list module-player-list sort-list module-downlist selected">
+				<div class="scroll-box-y">
+					<div class="module-row-one">
+						<div class="module-row-info">
+							<a class="module-row-text copy" href="javascript:;" data-clipboard-text="http://svip.bocai-zuida.com/2103/{$obj.vod_name}-01.mp4" title="复制《{$obj.vod_name}》第01集下载地址">
+								<i class="icon-video-file"></i>
+								<div class="module-row-title">
+									<h4>{$obj.vod_name} - 第01集</h4>
+									<p>http://svip.bocai-zuida.com/2103/{$obj.vod_name}-01.mp4</p>
+								</div>
+							</a>
+							<div class="module-row-shortcuts">
+								<a class="btn-pc btn-down" href="http://svip.bocai-zuida.com/2103/{$obj.vod_name}-01.mp4" title="下载《{$obj.vod_name}》第01集">
+									<i class="icon-download"></i>
+									<span>下载</span>
+								</a>
+								<a class="btn-copyurl copy" href="javascript:;" data-clipboard-text="http://svip.bocai-zuida.com/2103/{$obj.vod_name}-01.mp4" title="复制《{$obj.vod_name}》第01集下载地址">
+									<i class="icon-url"></i>
+									<span class="btn-pc">复制链接</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		{include file="vod/btm"}
+	</div>
+</main>
+
+{include file="public/foot"}
+</body>
+</html>

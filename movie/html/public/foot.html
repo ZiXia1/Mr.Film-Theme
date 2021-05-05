@@ -1,0 +1,29 @@
+<!-- 页脚 -->
+<footer id="footer" class="wrapper">
+    <p class="sitemap">
+        {maccms:type ids="parent" order="asc" by="sort" mid="1"}
+        <a class="color" href="{:mac_url_type($vo)}" title="{$vo.type_name}">{$vo.type_name}</a>-
+        {/maccms:type}
+
+        <a href="{:mac_url('map/index')}" title="最近更新">最近更新</a>-
+        <a href="{:mac_url('rss/index')}" title="rss">RSS</a>-
+        <a href="{:mac_url('rss/baidu')}" target="_blank" title="网站地图">Sitemap</a>
+    </p>
+    <p class="">
+        本站所有内容均来自互联网分享站点所提供的公开引用资源，未提供影视资源上传、存储服务。
+    </p>
+</footer>
+
+<div style="display: none">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8f9deff7171af0cb695f5f03eaf92fcc";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+<script>LA.init({id: "JHJZiSlcV67H9mrv",ck: "JHJZiSlcV67H9mrv"})</script>
+</div>

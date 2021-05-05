@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class} - 搜索结果 - {$maccms.site_name}</title>
+    <meta name="keywords" content="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}搜索结果" />
+    <meta name="description" content="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}搜索结果" />
+    {include file="public/include"}
+</head>
+<body class="search page">
+{include file="public/header"}
+
+<main id="index-main" class="wrapper">
+	<div class="content">	
+			
+	    <div id="search-content">
+	        <div class="search-box">		        
+	            <input class="search-input ac_wd" id="txtKeywords" type="text" name="wd"
+	            autocomplete="off" value="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}">
+	            <div class="search-drop">
+	                <div class="drop-content-items ac_hot none">
+	                    <div class="list-item list-item-title">
+	                        <strong>
+	                            大家都在搜这些影片
+	                        </strong>
+	                    </div>
+	                    <div class="search-tag">	                    
+				            {maccms:foreach name=":explode(',',$maccms.search_hot)" id="vo2" key="key2"}
+				            <a href="{:mac_url('vod/search',['wd'=>$vo2])}" class="hot">
+	                            <i class="icon-hot"></i>
+					            {$vo2}
+					        </a>
+				            {/maccms:foreach}
+	                    </div>
+	                </div>
+	            </div>
+	            <button class="search-btn search-go">
+	                <i class="icon-search"></i>
+	            </button>
+	            <button class="cancel-btn">取消</button>
+	        </div>
+	        <div class="search-stat">
+		        <h1>{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}</h1>
+		        <h2>搜索 "{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}" ，找到 <strong class="mac_total"></strong> 部影视作品</h2>
+		    </div>
+	    </div>
+	    
+		<div class="module">
+			<div class="module-list">
+				<div class="module-items">
+					
+					{maccms:vod num="20" paging="yes" pageurl="vod/search" order="desc" by="time"}
+					<div class="module-search-item">
+						<div class="video-cover">
+							<div class="module-item-cover">
+								<div class="module-item-pic">
+									<a href="{:mac_url_vod_play($vo)}" title="{$vo.vod_name}">
+										<i class="icon-play"></i>
+									</a>
+									<img class="ls-is-cached lazyloaded" data-src="{:mac_url_img($vo.vod_pic)}" src="{:mac_url_img($vo.vod_pic)}" alt="{$vo.vod_name}">
+									<div class="loading"></div>
+								</div>
+							</div>
+						</div>
+						<div class="video-info">
+						    <div class="video-info-header">
+						        <a class="video-serial" href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">
+							        {if condition="$vo.vod_serial gt 0"}
+								        第 {$vo.vod_serial}
+								        {if condition="$vo.type_id eq 4"}
+								        	话
+								        {elseif condition="$vo.type_id eq 3"}
+								        	期
+								        {else}
+								        	集
+								        {/if}
+								        
+								        	{if condition="$vo.type_id gt 3"}
+										        {if condition="$vo.vod_total gt 0"}
+										        	/ 共 {$vo.vod_total}
+										        {if condition="$vo.type_id eq 4"}
+										        	话
+										        {elseif condition="$vo.type_id eq 3"}
+										        	期
+										        {else}
+										        	集
+										        {/if}
+									        {/if}
+									        
+								        {/if}
+							        {else}
+							        	{$vo.vod_remarks}
+							        {/if}
+							    </a>
+						        <h3>
+						            <a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a>
+						        </h3>
+						        <div class="video-info-aux">
+						            <div class="tag-link">
+					                    <div class="video-tag-icon">
+			                                {if condition="$vo.type.type_id_1 eq 1"}
+			                                	<i class="icon-cate-dy"></i>
+			                                {elseif condition="$vo.type.type_id_1 eq 2"}
+			                                	<i class="icon-cate-ds"></i>
+			                                {elseif condition="$vo.type.type_id_1 eq 4"}
+			                                	<i class="icon-cate-dm"></i>
+			                                {else}
+			                                	<i class="icon-cate-zy"></i>
+			                                {/if}
+					                    </div>
+					                    {$vo.type.type_name}
+						            </div>
+						            <div class="tag-link">
+						            	{$vo.vod_year|mac_url_create='year'}
+						            </div>
+						            <div class="tag-link">
+						            	{$vo.vod_area|mac_url_create='area'}
+						            </div>
+						        </div>
+						    </div>
+						    <div class="video-info-main">
+						        <div class="video-info-items">
+						            <span class="video-info-itemtitle">
+						                导演：
+						            </span>
+						            <div class="video-info-item video-info-actor">
+						                {$vo.vod_director|mac_url_create='director','vod','search','<span class="slash">/</span>'}
+						            </div>
+						        </div>
+						        <div class="video-info-items">
+						            <span class="video-info-itemtitle">
+						                主演：
+						            </span>
+						            <div class="video-info-item video-info-actor">
+						                {$vo.vod_actor|mac_url_create='actor','vod','search','<span class="slash">/</span>'}
+						            </div>
+						        </div>
+						        <div class="video-info-items">
+						            <span class="video-info-itemtitle">
+						                剧情：
+						            </span>
+						            <div class="video-info-item">
+						                {$vo.vod_blurb}
+						            </div>
+						        </div>
+						    </div>
+						    <div class="video-info-footer">
+						        <a href="{:mac_url_vod_play($vo)}" class="btn-important btn-base" title="立刻播放{$vo.vod_name}">
+						            <i class="icon-play"></i>
+						            <strong>立即播放</strong>
+						        </a>
+						    </div>
+						</div>
+					</div>
+					{/maccms:vod}
+				</div>
+				<div class="module-footer">
+					{include file="public/paging"}
+				</div>
+			    <script>
+			        $('.mac_total').html('{$__PAGING__.record_total}');
+			    </script>
+			</div>
+		</div>
+		
+	</div>
+</main>
+
+{include file="public/foot"}
+</body>
+</html>
+
