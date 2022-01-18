@@ -1,0 +1,412 @@
+{include file="../../../application/admin/view/public/head" /}
+<div class="dytheme" style="display: block;margin: 0 10px;">
+	<div class="dybanner" style="background: url(https://files.xiami.com/musician-avatar/07d8ec1a38a5462c3afbfac41413b8af/573799c336faccceb14954cb25064bde-1200x40.jpg) center center, linear-gradient(to right, #6246f9 50%, #60a3ff 50%, #60a3ff) left top;background-repeat: no-repeat;background-size: cover;border-radius: 0 0 10px 10px;height: 40px;line-height: 40px;font-size: 14px;color: #fff;">
+		<div class="hltext"><span class="hlname"></span> &nbsp;多功能自适应简洁主题</div>
+	</div>
+</div>
+<div class="page-container">
+    <form class="layui-form layui-form-pane" action="">
+        <div class="layui-tab">
+            <ul class="layui-tab-title">
+                <li class="layui-this">主题说明</li>
+                <li class="">基本设置</li>
+                <li class="">高级设置</li>
+                <li class="">广告设置</li>
+            </ul>
+            <div class="layui-tab-content">
+                <!--首页-->
+                <div class="layui-tab-item layui-show">
+                    <blockquote class="layui-elem-quote" style="margin: 5px 0;">欢迎使用 ，修改前请备份相关文件！以免数据丢失！！<br/>
+                    当前主题版本：V2.0后台版
+                    </blockquote>
+                    <style>.layui-elem-quote b{color:#f73131}</style>
+
+                    <div class="layui-col-md4" style="padding-right: 10px;">
+                        <table class="layui-table">
+                            <thead>
+                            <tr><th colspan="2" scope="col">主题简介</th></tr>
+                            </thead>
+                            <tbody>
+                            <tr><td>适用系统</td><td><span class="layui-badge">MACCMS V10</span></td></tr>
+                            <tr><td>更新时间</td><td>2021-05</td></tr>
+                            <tr><td>联系作者</td><td><a href="https://t.me/luozh" style=" color: blue; ">Telegram</a></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="layui-col-md4" style="padding-right: 10px;">
+                        <table class="layui-table">
+                            <thead>
+                            <tr><th>使用说明</th></tr>
+                            </thead>
+                            <tbody>
+                            <tr><td>1. 推荐使用PHP版本≥7.0-7.2</td></tr>
+                            <tr><td>2. 主题文件读写权限755</td></tr>
+                            <tr><td>3. 因主题是可复制的商品，请勿传播。</td></tr>
+                            <tr><td style="color: red;">4. ※ 倡导文明模板 o 请勿非法使用 ※</td></tr>
+                             <tr><td style="color: red;">5. ※ 禁止任何形式的二次出售、分享他人等侵权行为※</td></tr>
+                            </tbody></table>
+                    </div>
+                    <div class="layui-col-md4">
+                        <table class="layui-table">
+                            <thead>
+                            <tr><th>更新日志</th></tr>
+                            </thead>
+                            <tbody>
+                            <tr><th colspan="2" scope="col">----2021-05----</br>1.添加模板后台</br>2.新增留言/资讯/专题/会员中心/用户注册/影片收藏等模块</br>3.添加广告位</br>----2021-04----</br>1.添加功能:回到顶部/访问弹窗公告/首页分类图标/播放小窗/播放大窗</br>2.添加页面:幻灯片/网址测速页/APP下载页</br>3.细节优化:选集小动画/历史记录/播放下载判断</br>----2021-03----</br>1.基本页面仿制</th></tr>
+                            </tbody></table>
+                    </div>                    
+                </div>
+                <!--首页end-->
+                <!--s1-->
+                <div class="layui-tab-item ">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">首页logo：</label>
+                        <div class="layui-input-inline w400">
+                            <input type="text" name="dycms[s1][logo1]" placeholder="首页logo" value="{$config['dycms']['s1']['logo1']}" class="layui-input upload-input" placeholder="建议350*90">
+                        </div>
+                        <div class="layui-input-inline w100">
+                            <button type="button" class="layui-btn layui-btn-primary layui-upload" lay-data="{data:{thumb:0,thumb_class:'dycms[s1][logo1]'}}" id="upload11">选择文件</button>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">左上角logo：</label>
+                        <div class="layui-input-inline w400">
+                            <input type="text" name="dycms[s1][logo2]" placeholder="全站logo" value="{$config['dycms']['s1']['logo2']}" class="layui-input upload-input" placeholder="建议200*200">
+                        </div>
+                        <div class="layui-input-inline w100">
+                            <button type="button" class="layui-btn layui-btn-primary layui-upload" lay-data="{data:{thumb:0,thumb_class:'dycms[s1][logo2]'}}" id="upload12">选择文件</button>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">懒加载图片：</label>
+                        <div class="layui-input-inline w400">
+                            <input type="text" name="dycms[s1][pic]" placeholder="懒加载图片" value="{$config['dycms']['s1']['pic']}" class="layui-input upload-input" placeholder="建议300*500">
+                        </div>
+                        <div class="layui-input-inline w100">
+                            <button type="button" class="layui-btn layui-btn-primary layui-upload" lay-data="{data:{thumb:0,thumb_class:'dycms[s1][pic]'}}" id="upload13">选择文件</button>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">首页文字：</label>
+                        <div class="layui-input-inline w500">
+                            <input name="dycms[s1][gg]" type="text" value="{$config['dycms']['s1']['gg']}" size="60" class="layui-input" placeholder="首页左上角文字">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">底部声明：</label>
+                        <div class="layui-input-block">
+                            <textarea name="dycms[s1][sm]" class="layui-textarea" placeholder="底部声明">{$config['dycms']['s1']['sm']}</textarea>
+                        </div>
+                    </div>
+                </div>
+<!--s1end-->
+<!--s2-->
+                <div class="layui-tab-item">
+                    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px">
+                        <legend>顶部导航设置</legend>
+                    </fieldset>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">网址弹窗</label>                        
+                        <div class="layui-input-inline w300">
+                            <input type="radio" name="dycms[s2][wz]" value="0" title="隐藏" {if condition="$config['dycms']['s2']['wz'] eq 0"}checked {/if}>
+                            <input type="radio" name="dycms[s2][wz]" value="1" title="显示" {if condition="$config['dycms']['s2']['wz'] eq 1"}checked {/if}>
+                        </div>
+                    </div> 
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">个人中心</label>                        
+                        <div class="layui-input-inline w300">
+                            <input type="radio" name="dycms[s2][user]" value="0" title="隐藏" {if condition="$config['dycms']['s2']['user'] eq 0"}checked {/if}>
+                            <input type="radio" name="dycms[s2][user]" value="1" title="显示" {if condition="$config['dycms']['s2']['user'] eq 1"}checked {/if}>
+                        </div>
+                    </div>                      
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">下载客户端</label>                        
+                        <div class="layui-input-inline w300">
+                            <input type="radio" name="dycms[s2][app]" value="0" title="隐藏" {if condition="$config['dycms']['s2']['app'] eq 0"}checked {/if}>
+                            <input type="radio" name="dycms[s2][app]" value="1" title="显示" {if condition="$config['dycms']['s2']['app'] eq 1"}checked {/if}>
+                        </div>
+                    </div>  
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">专题</label>                        
+                        <div class="layui-input-inline w300">
+                            <input type="radio" name="dycms[s2][topic]" value="0" title="隐藏" {if condition="$config['dycms']['s2']['topic'] eq 0"}checked {/if}>
+                            <input type="radio" name="dycms[s2][topic]" value="1" title="显示" {if condition="$config['dycms']['s2']['topic'] eq 1"}checked {/if}>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+						<div class="layui-form-item">
+                        <label class="layui-form-label">自定义导航1</label>
+                        <div class="layui-input-inline w70">
+							<select name="dycms[s2][diy1]">
+                                <option value="0" {if condition="$config['dycms']['s2']['diy1'] eq 0"}selected {/if}>隐藏</option>
+                                <option value="1" {if condition="$config['dycms']['s2']['diy1'] eq 1"}selected {/if}>显示</option>
+                            </select>
+						</div>
+                        <div class="layui-input-inline w100">
+                            <input type="text" name="dycms[s2][diy1name]" placeholder="导航名称" value="{$config['dycms']['s2']['diy1name']}" class="layui-input">
+                        </div>
+                        <div class="layui-input-inline w200">
+                            <input type="text" name="dycms[s2][diy1url]" placeholder="导航链接" value="{$config['dycms']['s2']['diy1url']}" class="layui-input">
+                        </div>
+						</div>
+                    </div>  
+                    <div class="layui-form-item">
+						<div class="layui-form-item">
+                        <label class="layui-form-label">自定义导航2</label>
+                        <div class="layui-input-inline w70">
+							<select name="dycms[s2][diy2]">
+                                <option value="0" {if condition="$config['dycms']['s2']['diy2'] eq 0"}selected {/if}>隐藏</option>
+                                <option value="1" {if condition="$config['dycms']['s2']['diy2'] eq 1"}selected {/if}>显示</option>
+                            </select>
+						</div>
+                        <div class="layui-input-inline w100">
+                            <input type="text" name="dycms[s2][diy2name]" placeholder="导航名称" value="{$config['dycms']['s2']['diy2name']}" class="layui-input">
+                        </div>
+                        <div class="layui-input-inline w200">
+                            <input type="text" name="dycms[s2][diy2url]" placeholder="导航链接" value="{$config['dycms']['s2']['diy2url']}" class="layui-input">
+                        </div>
+						</div>
+                    </div>                      
+                    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px"></fieldset>                    
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">首页幻灯片：</label>
+                        <div class="layui-input-block">
+                        <div class="layui-input-inline w300">
+                            <input type="radio" name="dycms[s2][slide]" value="0" title="隐藏" {if condition="$config['dycms']['s2']['slide'] eq 0"}checked {/if}>
+                            <input type="radio" name="dycms[s2][slide]" value="1" title="显示" {if condition="$config['dycms']['s2']['slide'] eq 1"}checked {/if}>
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">幻灯片设置为推荐“9”</div>
+                        </div>
+                    </div>
+                    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px"></fieldset>                    
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">底部"关于"：</label>
+                        <div class="layui-input-block">
+                        <div class="layui-input-inline w300">
+                            <input type="radio" name="dycms[s2][about]" value="0" title="隐藏" {if condition="$config['dycms']['s2']['about'] eq 0"}checked {/if}>
+                            <input type="radio" name="dycms[s2][about]" value="1" title="显示" {if condition="$config['dycms']['s2']['about'] eq 1"}checked {/if}>
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">与网址弹窗同步显示，如需更改关于页面自行前往模板label/about.html更改</div>
+                        </div>
+                    </div>                    
+                    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px"></fieldset>                    
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">网址弹窗列表</label>
+                        <div class="layui-input-inline w200">
+                            <input name="dycms[s2][web1]" type="text" value="{$config['dycms']['s2']['web1']}" size="60" class="layui-input" placeholder="输入备用域名1">                            
+                            <input name="dycms[s2][web2]" type="text" value="{$config['dycms']['s2']['web2']}" size="60" class="layui-input" placeholder="输入备用域名2">
+                            <input name="dycms[s2][web3]" type="text" value="{$config['dycms']['s2']['web3']}" size="60" class="layui-input" placeholder="输入备用域名3">                                
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">同步测速页面网址</div>
+                    </div>
+                    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px">
+                        <legend>每日公告弹窗</legend>
+                    </fieldset>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">状态：</label>
+                        <div class="layui-input-inline w300">
+                            <input type="radio" name="dycms[s2][tc]" value="0" title="关闭" {if condition="$config['dycms']['s2']['tc'] eq 0"}checked {/if}>
+                            <input type="radio" name="dycms[s2][tc]" value="1" title="开启" {if condition="$config['dycms']['s2']['tc'] eq 1"}checked {/if}>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">弹窗内容：</label>
+                        <div class="layui-input-block">
+                            <textarea name="dycms[s2][tc_noti]" class="layui-textarea"  placeholder="请输入弹窗内容<p>为一行</p>">{$config['dycms']['s2']['tc_noti']}</textarea>
+                        </div>
+                    </div>  
+                    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px"></fieldset>                      
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">APP下载链接：</label>
+                        <div class="layui-input-inline w500">
+                            <input name="dycms[s2][app_url]" type="text" value="{$config['dycms']['s2']['app_url']}" size="60" class="layui-input" placeholder="安卓APP下载链接">
+                            <input name="dycms[s2][app_url2]" type="text" value="{$config['dycms']['s2']['app_url2']}" size="60" class="layui-input" placeholder="苹果APP下载链接">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">APP下载页需要将“下载客户端”设置为显示</div>
+                    </div>                          
+                    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px"></fieldset>                    
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">播放器小窗</label>
+                        <div class="layui-input-block">
+                        <div class="layui-input-inline w300">
+                            <input type="radio" name="dycms[s2][miniplay]" value="0" title="隐藏" {if condition="$config['dycms']['s2']['miniplay'] eq 0"}checked {/if}>
+                            <input type="radio" name="dycms[s2][miniplay]" value="1" title="显示" {if condition="$config['dycms']['s2']['miniplay'] eq 1"}checked {/if}>
+                        </div>
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">PC端播放视频时滚动悬浮小窗</div>
+                    </div>                  
+                </div>
+<!--s2end-->
+<!--s3-->
+                <div class="layui-tab-item">
+<!--首页AD-->
+                    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px">
+                        <legend>首页广告</legend>
+                    </fieldset>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">广告状态：</label>
+                        <div class="layui-input-block">
+                            <input type="radio" name="dycms[s3][ad1]" value="0" title="关闭" {if condition="$config['dycms']['s3']['ad1'] eq 0"}checked {/if}>
+                            <input type="radio" name="dycms[s3][ad1]" value="1" title="开启" {if condition="$config['dycms']['s3']['ad1'] eq 1"}checked {/if}>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">PC广告图片：</label>
+                        <div class="layui-input-inline w600">
+                            <input type="text" name="dycms[s3][ad1_pc]" placeholder="PC端广告自定义图片地址或路径，建议尺寸1000*120" value="{$config['dycms']['s3']['ad1_pc']}" class="layui-input upload-input">
+                        </div>
+                        <div class="layui-input-inline ">
+                            <button type="button" class="layui-btn layui-upload" lay-data="{data:{thumb:0,thumb_class:'dycms[s3][ad1_pc]'}}" id="upload1">上传图片</button>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">手机广告图片：</label>
+                        <div class="layui-input-inline w600">
+                            <input type="text" name="dycms[s3][ad1_wap]" placeholder="手机端广告自定义图片地址或路径，建议尺寸750*120" value="{$config['dycms']['s3']['ad1_wap']}" class="layui-input upload-input">
+                        </div>
+                        <div class="layui-input-inline ">
+                            <button type="button" class="layui-btn layui-upload" lay-data="{data:{thumb:0,thumb_class:'dycms[s3][ad1_wap]'}}" id="upload1">上传图片</button>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                    <label class="layui-form-label">广告跳转链接：</label>
+                    <div class="layui-input-inline w600">
+                        <input type="text" name="dycms[s3][ad1_url]" placeholder="广告自定义内容链接" value="{$config['dycms']['s3']['ad1_url']}" class="layui-input">
+                    </div>
+                    </div>
+<!--详情AD-->
+                    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px">
+                        <legend>详情页广告</legend>
+                    </fieldset>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">广告状态：</label>
+                        <div class="layui-input-block">
+                            <input type="radio" name="dycms[s3][ad2]" value="0" title="关闭" {if condition="$config['dycms']['s3']['ad2'] eq 0"}checked {/if}>
+                            <input type="radio" name="dycms[s3][ad2]" value="1" title="开启" {if condition="$config['dycms']['s3']['ad2'] eq 1"}checked {/if}>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">PC广告图片：</label>
+                        <div class="layui-input-inline w600">
+                            <input type="text" name="dycms[s3][ad2_pc]" placeholder="PC端广告自定义图片地址或路径，建议尺寸1000*120" value="{$config['dycms']['s3']['ad2_pc']}" class="layui-input upload-input">
+                        </div>
+                        <div class="layui-input-inline ">
+                            <button type="button" class="layui-btn layui-upload" lay-data="{data:{thumb:0,thumb_class:'dycms[s3][ad2_pc]'}}" id="upload1">上传图片</button>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">手机广告图片：</label>
+                        <div class="layui-input-inline w600">
+                            <input type="text" name="dycms[s3][ad2_wap]" placeholder="手机端广告自定义图片地址或路径，建议尺寸750*120" value="{$config['dycms']['s3']['ad2_wap']}" class="layui-input upload-input">
+                        </div>
+                        <div class="layui-input-inline ">
+                            <button type="button" class="layui-btn layui-upload" lay-data="{data:{thumb:0,thumb_class:'dycms[s3][ad2_wap]'}}" id="upload1">上传图片</button>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                    <label class="layui-form-label">广告跳转链接：</label>
+                    <div class="layui-input-inline w600">
+                        <input type="text" name="dycms[s3][ad2_url]" placeholder="广告自定义内容链接" value="{$config['dycms']['s3']['ad2_url']}" class="layui-input">
+                    </div>
+                    </div>
+<!--播放AD-->
+                    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px">
+                        <legend>播放页广告</legend>
+                    </fieldset>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">广告状态：</label>
+                        <div class="layui-input-block">
+                            <input type="radio" name="dycms[s3][ad3]" value="0" title="关闭" {if condition="$config['dycms']['s3']['ad3'] eq 0"}checked {/if}>
+                            <input type="radio" name="dycms[s3][ad3]" value="1" title="开启" {if condition="$config['dycms']['s3']['ad3'] eq 1"}checked {/if}>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">PC广告图片：</label>
+                        <div class="layui-input-inline w600">
+                            <input type="text" name="dycms[s3][ad3_pc]" placeholder="PC端广告自定义图片地址或路径，建议尺寸1000*120" value="{$config['dycms']['s3']['ad3_pc']}" class="layui-input upload-input">
+                        </div>
+                        <div class="layui-input-inline ">
+                            <button type="button" class="layui-btn layui-upload" lay-data="{data:{thumb:0,thumb_class:'dycms[s3][ad3_pc]'}}" id="upload1">上传图片</button>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">手机广告图片：</label>
+                        <div class="layui-input-inline w600">
+                            <input type="text" name="dycms[s3][ad3_wap]" placeholder="手机端广告自定义图片地址或路径，建议尺寸750*120" value="{$config['dycms']['s3']['ad3_wap']}" class="layui-input upload-input">
+                        </div>
+                        <div class="layui-input-inline ">
+                            <button type="button" class="layui-btn layui-upload" lay-data="{data:{thumb:0,thumb_class:'dycms[s3][ad3_wap]'}}" id="upload1">上传图片</button>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                    <label class="layui-form-label">广告跳转链接：</label>
+                    <div class="layui-input-inline w600">
+                        <input type="text" name="dycms[s3][ad3_url]" placeholder="广告自定义内容链接" value="{$config['dycms']['s3']['ad3_url']}" class="layui-input">
+                    </div>
+                    </div>
+                </div>
+<!--s3end-->
+            </div>
+        </div>
+        <div class="layui-form-item center" style="padding-top: 20px;">
+            <div class="layui-input-block">
+                <button type="submit" class="layui-btn" lay-submit="" lay-filter="formSubmit">保 存</button>
+            </div>
+        </div>
+    </form>
+</div>
+{include file="../../../application/admin/view/public/foot" /}
+<script type="text/javascript">
+    layui.use(['form','upload', 'layer'], function(){
+        // 操作对象
+        var form = layui.form
+            , layer = layui.layer
+            , upload = layui.upload;
+
+        form.on('radio(cache_type)',function(data){
+            $('.row_cache_server').hide();
+            if(data.value=='memcache' || data.value=='redis' || data.value=='memcached'){
+                $('.row_cache_server').show();
+            }
+        });
+        upload.render({
+            elem: '.layui-upload'
+            ,url: "{:url('upload/upload')}?flag=dycms"
+            ,method: 'post'
+            ,before: function(input) {
+                layer.msg('文件上传中...', {time:3000000});
+            },done: function(res, index, upload) {
+                var obj = this.item;
+                if (res.code == 0) {
+                    layer.msg(res.msg);
+                    return false;
+                }
+                layer.closeAll();
+                var input = $(obj).parent().parent().find('.upload-input');
+                if ($(obj).attr('lay-type') == 'image') {
+                    input.siblings('img').attr('src', res.data.file).show();
+                }
+                input.val(res.data.file);
+
+                if(res.data.thumb_class !=''){
+                    $('.'+ res.data.thumb_class).val(res.data.thumb[0].file);
+                }
+            }
+        });
+        $('.upload-input').hover(function (e){
+            var e = window.event || e;
+            var imgsrc = $(this).val();
+            if(imgsrc.trim()==""){ return; }
+            var left = e.clientX+document.body.scrollLeft+20;
+            var top = e.clientY+document.body.scrollTop+20;
+            $(".showpic").css({left:left,top:top,display:""});
+            if(imgsrc.indexOf('://')<0){ imgsrc = ROOT_PATH + '/' + imgsrc;	} else{ imgsrc = imgsrc.replace('mac:','http:'); }
+            $(".showpic_img").attr("src", imgsrc);
+        },function (e){
+            $(".showpic").css("display","none");
+        });
+
+    });
+</script>
+</body>
+</html>
