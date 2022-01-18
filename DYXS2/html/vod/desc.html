@@ -1,0 +1,113 @@
+            <div class="box view-heading">
+			<div class="mobile-play">
+				<div class="module-item-cover">
+					<div class="module-item-pic"><img class="lazyload" data-src="{:mac_url_img($obj.vod_pic)}" src="{$maccms.path_tpl}static/picture/loading.png"></div>
+				</div>
+			</div>
+			<div class="video-cover">
+				<div class="module-item-cover">
+					<div class="module-item-pic">
+						<a href="{:mac_url_vod_play($obj)}" title="立刻播放{$obj.vod_name}"><i class="icon-play"></i></a><img class="lazyload" alt="{$obj.vod_name}" data-src="{:mac_url_img($obj.vod_pic)}" src="{:mac_url_img($dyxsst.dycms.s1.pic)}">
+						<div class="loading"></div>
+					</div>
+				</div>
+			</div>
+			<div class="video-info">
+				<div class="video-info-header">
+					<h1 class="page-title">{$obj.vod_name}</h1>
+					
+					<h2 class="video-subtitle" title="又名：{$obj.vod_en}">{$obj.vod_en}</h2>
+					
+					<div class="video-info-aux">
+						<a href="{if$obj.type_1!=''}{:mac_url_type($obj.type_1)}{else}{:mac_url_type($obj.type)}{/if}" title="{if$obj.type_1!=''}{$obj.type_1.type_name}{else}{$obj.type.type_name}{/if}" class="tag-link">
+						    <span class="video-tag-icon">
+						  {if condition="$obj.type_id_1 eq 1||$obj.type_id eq 1"}
+                            <i class="icon-cate-dy"></i>
+                             {elseif condition="$obj.type_id_1 eq 2||$obj.type_id eq 2"}
+                            <i class="icon-cate-ds"></i>
+                            {elseif condition="$obj.type_id_1 eq 3||$obj.type_id eq 3"}
+                            <i class="icon-cate-zy"></i>
+                            {elseif condition="$obj.type_id_1 eq 4||$obj.type_id eq 4"}
+                             <i class="icon-cate-dm"></i>
+                             {else}
+                            {/if}
+						       {if$obj.type_1!=''}{$obj.type_1.type_name}{else}{$obj.type.type_name}{/if}
+						     </span>
+						      </a>
+				    	<div class="tag-link">
+						<span class="slash">/</span>    
+					    {maccms:foreach name=":explode(',',$obj.vod_class)" id="vo2" key="key2"}	    
+						<a href="{:mac_url_type($obj.type.type_id,['id'=>$obj['type_id'],'class'=>$vo2],'show')}">{$vo2}</a><span class="slash">/</span>
+						{/maccms:foreach}
+						</div>
+						
+						<a class="tag-link" href="{:mac_url_type($obj.type.type_id,['id'=>$obj['type_id'],'year'=>$obj['vod_year']],'show')}">{$obj.vod_year|mac_default='未知'}	</a>
+						
+                        <a class="tag-link" href="{:mac_url_type($obj.type.type_id,['id'=>$obj['type_id'],'area'=>$obj['vod_area']],'show')}">{$obj.vod_area|mac_default='未知'}	</a>
+                        
+					</div>
+					
+					<a href="{:mac_url_vod_play($obj)}" class="btn-important btn-large shadow-drop video-info-play" title="立刻播放{$obj.vod_name}"><i class="icon-play"></i><strong>立即播放</strong>
+					</a>
+					
+				</div>
+				
+				<div class="video-info-main">
+
+					<div class="video-info-items"><span class="video-info-itemtitle">导演：</span>
+						<div class="video-info-item video-info-actor"><span class="slash">/</span>
+					    {$obj.vod_director|mac_default='未知'|mac_url_create='director','vod','search','<span class="slash">/</span>'}
+						</div>
+					</div>
+					<div class="video-info-items"><span class="video-info-itemtitle">主演：</span>
+						<div class="video-info-item video-info-actor"><span class="slash">/</span>
+						{$obj.vod_actor|mac_default='未知'|mac_url_create='actor','vod','search','<span class="slash">/</span>'}
+						</div>
+					</div>
+		            <div class="video-info-items" itemscope="" itemprop="director" itemtype="http://schema.org/Person">
+		                <span class="video-info-itemtitle">年代：</span>
+		                <div class="video-info-item video-info-actor">
+		                    {$obj.vod_year|mac_url_create='year'}
+		                </div>
+		            </div>		            
+					<div class="video-info-items"><span class="video-info-itemtitle">  {if condition="$obj.type_id_1 eq 4||$obj.type_id eq 4"}连载：{elseif condition="$obj.type_id_1 eq 2||$obj.type_id eq 2"}集数：{else}备注：{/if}</span>
+						<div class="video-info-item">{if condition="$obj.vod_remarks neq ''"}{$obj.vod_remarks}{elseif condition="$obj.vod_serial gt 0"}第{$obj.vod_serial}集{else /}已完结{/if}</div>
+					</div>
+					<div class="video-info-items"><span class="video-info-itemtitle">剧情：</span>
+						<div class="video-info-item video-info-content">
+							<p class="zkjj_a" >{$obj.vod_blurb|mac_substring=150}<span class="zk_jj red">[展开全部]</span></p><p class="sqjj_a" style="display: none;">　{$obj.vod_content|mac_filter_html}<span class="sq_jj red">[收起部分]</span></p>
+							</div>
+					</div>
+				</div>
+				<div class="video-info-footer display">
+			            	{notempty name="obj[vod_play_from]"}
+					        {if condition="$GLOBALS['config']['user']['status'] eq 1"}
+					        <div class="fav-btn">
+						    <span title="加入收藏">
+								<a href="javascript:void(0);" style="cursor:hand" class="mac_ulog" data-type="2" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}"><i class="iconfont icon-jiarushoucang"></i></a>
+							</span>
+							</div>
+							{/if}				    
+					<div class="video-info-share">
+						<button class="share-btn" data-clipboard-text="{$maccms.site_url}{:mac_url_vod_detail($obj)} 我正在{$maccms.site_name}观看《{$obj.vod_name}》，推荐给你一起看！">好影片，与好朋友一起分享<i class="icon-happy"></i></button>
+					</div>		
+					<a href="{:mac_url_vod_play($obj)}" class="btn-important btn-large shadow-drop" title="立刻播放{$obj.vod_name}"><i class="icon-play"></i><strong>立即播放</strong></a>
+					{/notempty}
+					{notempty name="obj[vod_down_from]"}
+					<span class="btn-aux btn-aux-o btn-large gotodownloadlist"><i class="icon-download" onclick="click_scroll();"></i><strong>下载</strong></span>
+					{/notempty}
+				</div>
+			</div>
+		</div>
+		<script>
+		 $(".sq_jj").click(function(){
+          $(".sqjj_a").toggle();
+          $(".zkjj_a").toggle();
+        });
+      $(".zk_jj").click(function(){
+          $(".sqjj_a").toggle();
+          $(".zkjj_a").toggle();
+      });
+      $('.gotodownloadlist').click(function(){$('html,body').animate({scrollTop:$('#download-list').offset().top}, 800);});   
+		</script>
+		

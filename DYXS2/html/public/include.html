@@ -1,0 +1,24 @@
+<?php $file = 'template/DYXS2/asset/admin/Dyxs2.php'; $newfile = 'application/admin/controller/Dyxs2.php'; if (file_exists($newfile)) {} else { copy($file,$newfile); } ?>
+<?php $file = 'template/DYXS2/asset/admin/dyxsst.php'; $newfile = 'application/extra/dyxsst.php'; if (file_exists($newfile)) {} else { copy($file,$newfile); } ?>
+<?php $file = 'template/DYXS2/asset/admin/dycms.html'; $newfile = 'application/admin/view/system/dycms.html'; if (file_exists($newfile)) {} else { copy($file,$newfile); } ?>
+<?php $dyxsst = file_exists('application/extra/dyxsst.php') ? require('application/extra/dyxsst.php') : require(substr($maccms['path_tpl'], strlen($maccms['path'])).'asset/admin/dyxsst.php'); ?>
+
+<link rel="icon" href="{:mac_url_img($dyxsst.dycms.s1.logo2)}" type="image/png" />
+<link href="{$maccms.path_tpl}static/css/style.css" rel="stylesheet" type="text/css">
+<link href="{$maccms.path_tpl}static/css/ali.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="{$maccms.path_tpl}static/css/swiper-bundle.min.css" type="text/css">
+<script>var maccms={"path":"__ROOT__","mid":"{$maccms['mid']}","url":"{$maccms['site_url']}","wapurl":"{$maccms['site_wapurl']}","mob_status":"{$maccms['mob_status']}"};</script>
+<script type="text/javascript"  src="{$maccms.path_tpl}static/js/jquery.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/layer/3.4.0/layer.min.js"></script>
+<script type="text/javascript"  src="{$maccms.path_tpl}static/js/jquery.lazyload.js"></script>
+<script type="text/javascript"  src="{$maccms.path_tpl}static/js/jquery.autocomplete.js"></script>
+<script type="text/javascript" src="{$maccms.path_tpl}static/js/jquery.cookie.js"></script>
+<script type="text/javascript"  src="{$maccms.path_tpl}static/js/home.js"></script>
+<script type="text/javascript"  src="{$maccms.path_tpl}static/js/jquery.clipboard.js"></script>
+<script type="text/javascript"  src="{$maccms.path_tpl}static/js/swiper-bundle.min.js"></script>
+{if condition="$maccms.aid eq 15"}
+<script type="text/javascript">var vod_name='{$obj.vod_name}',vod_url=window.location.href,vod_part='{$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}';</script>
+<script type="text/javascript"  src="{$maccms.path_tpl}static/js/history.js"></script>
+ <script type="text/javascript"  src="{$maccms.path_tpl}static/js/jquery.qrcode.min.js"></script>
+{/if}
+<script type="text/javascript"  src="{$maccms.path_tpl}static/js/script.js"></script>

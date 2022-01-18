@@ -1,0 +1,13 @@
+	   <div class="module">
+			<div class="module-heading">
+				<h2 class="module-title">正在热播</h2>
+				<a class="more" href="{:mac_url_type($vo,[],'show')}" title="更多">更多<i class="icon-arrow-right-o"></i></a>
+			</div>
+			<div class="module-list module-lines-list">
+				<div class="module-items">
+				{maccms:vod num="6" type="all" order="asc" by="time" level="8"}	
+				{include file="public/vodbox"}
+		        {/maccms:vod}
+				</div>
+			</div>
+		</div>

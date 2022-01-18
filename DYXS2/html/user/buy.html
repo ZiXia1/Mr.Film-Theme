@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>充值卡充值 - 会员中心 -{$maccms.site_name}</title>
+	<meta name="keywords" content="{$maccms.site_keywords}"/>
+	<meta name="description" content="{$maccms.site_description}"/>
+	{include file="public/include"}
+	{include file="user/include"}
+</head>
+<body class="article page">
+{include file="public/head1"}
+<main id="main" class="wrapper">
+			<div class="content">
+				<div>
+					<h1 class="page-title">个人中心-充值</h1>
+					<div class="box">
+    <div class="row"> 
+    	<div class="col-md-wide-25 col-sm-wide-1 col-xs-1 padding-0 hidden-sm hidden-xs">
+    		{include file="user/head"}					
+    	</div>
+    	<div class="col-md-wide-75 col-sm-wide-1 col-xs-1 dyxs-pannel-side">
+    		<div class="dyxs-pannel dyxs-pannel-bg clearfix">
+				<div class="dyxs-pannel-box clearfix">
+					<div class="dyxs-pannel_bd clearfix">
+						<div class="dyxs-pannel_hd">
+							<div class="dyxs-pannel__head active bottom-line clearfix">
+								<h3 class="title">
+									在线充值
+								</h3>
+							</div>																		
+						</div>
+						<div class="dyxs-pannel_bd clearfix">
+							<div class="dyxs-user__form col-pd clearfix">
+								<p><span class="xiang active">剩余积分：</span><span class="text-red">{$obj.user_points}</span></p>
+								<p class="top-line-dot"><span class="xiang">充值的金额：</span><input type="text" name="price" value="{$config.min}" class="form-control" placeholder="充值金额"></p>
+								<p class="top-line-dot"><span class="xiang"></span><input type="button" id="btn_submit_pay" class="btn btn-primary" value="确认"></p>
+								<p class="top-line-dot"><span class="xiang"></span><span class="text-muted">友情提示：最小充值金额为{$config.min}元，1元可以兑换{$config.scale}个积分</span></p>
+							</div>																							
+						</div>		
+					</div>
+				</div>
+			</div>	
+			<div class="dyxs-pannel dyxs-pannel-bg clearfix">
+				<div class="dyxs-pannel-box clearfix">
+					<div class="dyxs-pannel_bd clearfix">
+						<div class="dyxs-pannel_hd">
+							<div class="dyxs-pannel__head active bottom-line clearfix">
+								<h3 class="title">
+									充值卡充值
+								</h3>
+							</div>																		
+						</div>
+						<div class="dyxs-pannel_bd clearfix">
+							<div class="dyxs-user__form col-pd clearfix">
+								<p><span class="xiang">充值卡号：</span><input type="text" name="card_no" value="" class="form-control" placeholder="充值卡号"></p>
+								<p class="top-line-dot"><span class="xiang">充值密码：</span><input type="text" name="card_pwd" value="" class="form-control" placeholder="充值密码"></p>
+								<p class="top-line-dot"><span class="xiang"></span><input type="button" id="btn_submit_card" class="btn btn-primary" value="确认"></p>
+								<p class="top-line-dot"><span class="xiang"></span><span class="text-muted">友情提示：请到卡密平台购买充值卡</span></p>
+							</div>																							
+						</div>		
+					</div>
+				</div>
+			</div>
+    	</div>
+    </div>
+    						<div class="article-bg"></div>
+						<div class="article-bg01"></div>
+    					</div>
+				</div>
+			</div>
+		</main>
+
+<script>
+
+	$(".go-back").click(function () {
+		var ref = document.referrer;
+		location.href=ref;
+	});
+
+	$('#btn_submit_pay').click(function(){
+		var that=$(this);
+		var price = $("input[name='price']").val();
+		if(Number(price)<1){
+			return;
+		}
+		if(confirm('确定要在线充值吗')) {
+			$.ajax({
+				url: "{:url('user/buy')}",
+				type: "post",
+				dataType: "json",
+				data: {price: price,flag:'pay'},
+				beforeSend: function () {
+					$("#btn_submit_pay").css("background","#fd6a6a").val("loading...");
+				},
+				success: function (r) {
+					if (r.code == 1) {
+						location.href="{:url('user/pay')}?order_code=" + r.data.order_code;
+					}
+					else{
+						layer.msg(r.msg);
+					}
+				},
+				complete: function () {
+					$("#btn_submit_pay").css("background","#fa4646").val("提交");
+				}
+			});
+		}
+	});
+
+	$('#btn_submit_card').click(function(){
+		var that=$(this);
+		var no = $('input[name="card_no"]').val();
+		var pwd = $('input[name="card_pwd"]').val();
+		if(no=='' || pwd==''){
+			layer.msg('请输入充值卡号和密码');
+			return;
+		}
+		if(confirm('确定要使用充值卡充值吗')) {
+			$.ajax({
+				url: "{:url('user/buy')}",
+				type: "post",
+				dataType: "json",
+				data: {card_no: no,card_pwd:pwd,flag:'card'},
+				beforeSend: function () {
+					$("#btn_submit_card").css("background","#fd6a6a").val("loading...");
+				},
+				success: function (r) {
+					layer.msg(r.msg);
+				},
+				complete: function () {
+					$("#btn_submit_card").css("background","#fa4646").val("提交");
+				}
+			});
+		}
+	});
+</script>
+{include file="public/foot"}
+</body>
+</html>

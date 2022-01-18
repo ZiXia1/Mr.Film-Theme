@@ -1,0 +1,21 @@
+<div class="popup popup-notice none">
+	<div class="popup-icon"><img src="{$maccms.path_tpl}static/picture/backhome.svg"></div>
+	<div class="popup-header">
+		<h3 class="popup-title">域名列表</h3></div>
+	<div class="popup-main">
+		<p>本站有多个域名方便大家记住可以上哦!</p>
+		<p>-
+			<a><strong>{$maccms.site_url}</strong></a><br>-
+			<a><strong>{$dyxsst.dycms.s2.web1}</strong></a><br>-
+			<a><strong>{$dyxsst.dycms.s2.web2}</strong></a><br>-
+			<a><strong>{$dyxsst.dycms.s2.web3}</strong></a><br>
+		</p>
+	</div>
+	<div class="popup-footer">
+		<a href="{:mac_url('label/web')}" class="popup-btn-o">查看全部域名</a>
+		{if condition="$dyxsst['dycms']['s2']['about'] eq 1"}
+		<a href="{:mac_url('label/about')}" class="popup-btn-o">关于本站</a>
+		{/if}
+	</div>
+	<div class="close-popup" id="close-popup"><i class="icon-close-o"></i></div>
+</div>

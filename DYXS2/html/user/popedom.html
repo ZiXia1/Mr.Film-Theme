@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>会员中心 - {$maccms.site_name}</title>
+	<meta name="keywords" content="{$maccms.site_keywords}"/>
+	<meta name="description" content="{$maccms.site_description}"/>
+	{include file="public/include"}
+	{include file="user/include"}
+</head>
+<body class="article page">
+{include file="public/head1"}
+<main id="main" class="wrapper">
+			<div class="content">
+				<div>
+					<h1 class="page-title">个人中心</h1>
+					<div class="box">
+    <div class="row"> 
+    	<div class="col-md-wide-25 col-sm-wide-1 col-xs-1 padding-0 hidden-sm hidden-xs">
+    		{include file="user/head"}					
+    	</div>
+    	<div class="col-md-wide-75 col-sm-wide-1 col-xs-1 dyxs-pannel-side">
+    		<div class="dyxs-pannel dyxs-pannel-bg clearfix">
+				<div class="dyxs-pannel-box clearfix">
+					<div class="dyxs-pannel_bd clearfix">
+						<div class="dyxs-pannel_hd">
+							<div class="dyxs-pannel__head active bottom-line clearfix">
+								<h3 class="title">
+									我的资料
+								</h3>
+								<ul class="navuser nav-tabs pull-right">
+									<li class="hidden-xs"><a href="{:url('user/index')}">基本资料</a></li>
+									<li><a href="{:url('user/info')}">修改信息</a></li>
+									<li class="active"><a href="{:url('user/popedom')}">我的权限</a></li>
+								</ul>
+							</div>																		
+						</div>
+						<div class="dyxs-pannel_bd clearfix">
+							<ul class="dyxs-vodlist__text striped to-color col-pd text-center clearfix">
+								<li class="striped-head clearfix">
+									<span class="col-xs-wide-25">类目</span>
+									<span class="col-xs-wide-15">列表页</span>
+									<span class="col-xs-wide-15">内容页</span>
+									<span class="col-xs-wide-15">播放页</span>
+									<span class="col-xs-wide-15">下载页</span>
+									<span class="col-xs-wide-15">试看</span>
+								</li>
+								{volist name="type_tree" id="vo"}
+								<li class="clearfix">										
+									<span class="col-xs-wide-25">{$vo.type_name}</span>
+									{foreach name="$vo.popedom" id="v2"}
+									<span class="col-xs-wide-15">{if condition="$v2 eq 1"}<i>√</i>{else}<i>×</i>{/if}</span>
+									{/foreach}																									
+								</li>
+								{volist name="vo.child" id="child"}
+								<li class="clearfix">										
+									<span class="col-xs-wide-25">{$child.type_name}</span>
+									{foreach name="$vo.popedom" id="v2"}
+									<span class="col-xs-wide-15">{if condition="$v2 eq 1"}<i>√</i>{else}<i>×</i>{/if}</span>
+									{/foreach}																									
+								</li>
+								{/volist}
+			  					{/volist}
+							</ul>							
+						</div>		
+					</div>
+				</div>
+			</div>		
+    	</div>
+    </div>
+						<div class="article-bg"></div>
+						<div class="article-bg01"></div>
+					</div>
+				</div>
+			</div>
+		</main>
+{include file="public/foot"}
+</body>
+</html>

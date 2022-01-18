@@ -1,0 +1,51 @@
+<footer id="footer" class="wrapper">
+	<p class="sitemap">
+	    {if condition="$dyxsst['dycms']['s2']['about'] eq 1"}
+		<a target="_blank" href="{:mac_url('label/about')}">关于</a><span class="space-line-bold"></span>
+		{/if}
+		<a target="_blank" href="{:mac_url('map/index')}">MAP</a><span class="space-line-bold"></span>
+		<a target="_blank" href="{:mac_url('rss/index')}">RSS</a><span class="space-line-bold"></span>
+		<a target="_blank" href="{:mac_url('rss/baidu')}">Baidu</a><span class="space-line-bold"></span>
+		<a target="_blank" href="{:mac_url('rss/baidu')}">Google</a><span class="space-line-bold"></span>
+		<a target="_blank" href="{:mac_url('rss/bing')}">Bing</a><span class="space-line-bold"></span>
+		<a target="_blank" href="{:mac_url('rss/so')}">so</a><span class="space-line-bold"></span>
+		<a target="_blank" href="{:mac_url('rss/sogou')}">Sogou</a><span class="space-line-bold"></span>
+		<a target="_blank" href="{:mac_url('rss/sm')}">SM</a>
+	</p>
+	<p>{$dyxsst.dycms.s1.sm}</p>
+	<p class="none">{$maccms.site_tj}</p>
+</footer>
+
+
+
+<div class="foot_right_bar">
+	<div title="求片留言">
+	<a  href="{:mac_url('gbook/index')}" >
+	<i class="iconfont icon-liuyan"></i>
+	</a>
+	</div>
+	<div class="goTop" title="返回顶部">
+		<i class="iconfont icon-up"></i>
+	</div>
+</div>
+
+<script type="text/javascript">
+$(function(){	
+	$(window).scroll(function() {		
+		if($(window).scrollTop() >= 100){
+			$('.goTop').fadeIn(300); 
+		}else{    
+			$('.goTop').fadeOut(300);    
+		}  
+	});
+	$('.goTop').click(function(){
+	$('html,body').animate({scrollTop: '0px'}, 800);});	
+});
+</script>
+
+{include file="public/tcnotice"} <!-- 弹窗公告-->
+
+   
+{include file="public/website"} <!-- 网址-->
+         
+<div class="shortcuts-mobile-overlay"></div>

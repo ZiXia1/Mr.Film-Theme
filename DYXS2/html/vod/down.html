@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+ <head> 
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>{$obj.vod_name}{$obj['vod_down_list'][$param['sid']]['urls'][$param['nid']]['name']}迅雷下载 - {$maccms.site.title}</title>
+    <meta name="keywords" content="{$obj.vod_name}{$obj['vod_down_list'][$param['sid']]['urls'][$param['nid']]['name']}迅雷下载,{$obj.vod_name}剧情介绍" />
+    <meta name="description" content="{$obj.vod_name}{$obj['vod_down_list'][$param['sid']]['urls'][$param['nid']]['name']}迅雷下载,{$obj.vod_name}剧情介绍" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+     {include file="public/include"}
+</head>
+<body class="view page">
+    
+   {include file="public/head1"}   <!-- 头部 -->
+   <main id="main" class="wrapper">
+   	<div class="content">   
+   	
+    {include file="vod/desc"}       <!-- 简介 -->
+    
+    {include file="vod/downlist"}   <!-- 下载列表 -->
+    
+    {include file="vod/serie"}   <!-- 系列影片 -->
+    
+    {include file="vod/like"}       <!-- 相关影片 -->
+    
+    {include file="vod/hot"}       <!-- 正在热播 -->
+   
+   	</div>
+   </main>
+   
+   {include file="public/foot"} <!-- 底部-->
+   
+   <div class="shortcuts-box"><div id="shortcuts-info"></div></div>
+   <span class="mac_hits hits none" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}{$obj.art_id}{$obj.topic_id}" data-type="hits"></span>
+    <span class="mac_ulog_set none" data-type="5" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-sid="{$param.sid}" data-nid="{$param.nid}"></span>
+	<script type="text/javascript">
+		function thunderf(url,name) {
+	        thunderLink.newTask({
+	            downloadDir: '下载目录',
+	            tasks: [{
+	                name: name,
+	                url: url,
+	                size: 0
+	            }]
+	        });
+	    }
+		
+	</script>
+ </body>
+</html>

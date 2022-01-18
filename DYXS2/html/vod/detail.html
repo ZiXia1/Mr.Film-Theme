@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+ <head> 
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>{$obj.vod_name}剧情介绍--{$maccms.site_name}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="keywords" content="{$obj.type.type_name}{$obj.vod_name}_{$maccms.site_name}" />
+  <meta name="description" content="{$obj.type.type_name}{$obj.vod_name}_{$maccms.site_name}" />
+     {include file="public/include"}
+</head>
+<body ontouchstart class="view page">
+    
+   {include file="public/head1"}   <!-- 头部 -->
+   <main id="main" class="wrapper">
+   	<div class="content">   
+   	
+    {include file="vod/desc"}       <!-- 简介 -->
+    
+    {include file="vod/playlist"}   <!-- 播放列表 -->
+    
+    {include file="vod/downlist"}   <!-- 下载列表 -->
+    
+	<!--AD2-->
+		{if condition="$dyxsst['dycms']['s3']['ad2'] eq 1"}
+	<div class="index-recommend recommend-list"><a href="{$dyxsst.dycms.s3.ad2_url}" target="_blank"><div class="pc"><img src="{:mac_url_img($dyxsst.dycms.s3.ad2_pc)}"></div><div class="phone"><img src="{:mac_url_img($dyxsst.dycms.s3.ad2_wap)}"></div></a></div>
+	{/if}
+	<!---->    
+    
+    {include file="vod/serie"}   <!-- 系列影片 -->
+    
+    {include file="vod/like"}       <!-- 相关影片 -->
+    
+    {include file="vod/hot"}       <!-- 正在热播 -->
+   
+   	</div>
+   </main>
+   
+   {include file="public/foot"} <!-- 底部-->
+   
+   <div class="shortcuts-box"><div id="shortcuts-info"></div></div>
+   <span class="mac_ulog_set none" alt="设置播放页浏览记录" data-type="4" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-sid="{$param.sid}" data-nid="{$param.nid}"></span>
+<span class="mac_hits none" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-type="hits"></span>
+ </body>
+</html>

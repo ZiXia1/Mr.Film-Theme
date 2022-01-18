@@ -1,0 +1,36 @@
+        <div class="page-heading">
+      <h1 class="page-title">{$obj.type_name}</h1>
+      <div class="list-header scroll-box">
+        <div class="block-box-items scroll-content">
+       {if$obj.childids||$obj.parent.childids}
+        {if condition="$obj.type_pid eq 0"}
+        {maccms:type parent="'.$obj['type_id'].'" order="asc" by="sort" id="vo2" key="key2"}
+          <div class="block-box-item {if condition="$vo2.type_id eq $obj.type_id" }selected{/if}">
+            <a class="block-box-content" href="{:mac_url_type($vo2,[],'type')}"  title="{$vo2.type_name}"><strong class="title">{$vo2.type_name}</strong></a>
+            <div class="block-box-bg">{$vo2.type_name}</div>
+          </div>
+          	{/maccms:type}								
+	          {else /}
+            {maccms:type parent="'.$obj['type_pid'].'" order="asc" by="sort" id="vo2" key="key2"}
+          <div class="block-box-item {if condition="$vo2.type_id eq $obj.type_id" }selected{/if}">
+            <a class="block-box-content" href="{:mac_url_type($vo2,[],'type')}"  title="{$vo2.type_name}"><strong class="title">{$vo2.type_name}</strong></a>
+            <div class="block-box-bg">{$vo2.type_name}</div>
+          </div>
+          	{/maccms:type}		
+	       {/if}
+	       {else/}
+          {maccms:foreach  name=":explode(',',$obj.type_extend.area)" id="vo1" key="key1"} 
+          <div class="block-box-item">
+            <a class="block-box-content" href="{:mac_url_type($obj,['area'=>$vo1],'show')}"  title="{$vo1}{$obj.type_name}"><strong class="title">{$vo1}{$obj.type_name}</strong></a>
+            <div class="block-box-bg">{$vo1}{$obj.type_name}</div>
+          </div>
+           {/maccms:foreach}  
+           {/if}
+           <div class="space-line-bold"></div>
+          <div class="block-box-item"><a class="block-box-content" href="{:mac_url_type($obj,[],'show')}" title="查看全部影片"><strong class="title">影片库</strong></a>
+            <div class="block-box-bg"><i class="icon-cate-dy"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    

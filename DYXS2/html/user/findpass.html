@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>找回密码 - {$maccms.site_name}</title>
+	<meta name="keywords" content="{$maccms.site_keywords}"/>
+	<meta name="description" content="{$maccms.site_description}"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+	{include file="public/include"}
+	{include file="user/include" /}
+</head>
+<body class="article page">
+{include file="public/head1"}
+<main id="main" class="wrapper">
+			<div class="content">
+				<div>
+					<h1 class="page-title">找回密码</h1>
+					<div class="box">
+
+<div id="dyxs_login__form clearfix">
+   <div class="dyxs-pannel dyxs-pannel-bg clearfix">
+	<div class="dyxs_login__form clearfix">
+	    <div class="dyxs-pannel_bd">
+	        
+	        	        <ul class="input-list">	
+		<form method="post" id="fm" action="">
+			<li>
+				<label>账号</label><input type="text" id="user_name" name="user_name" class="form-control" placeholder="请输入您的登录账号">
+			</li>
+			<li>
+				<label>密保问题</label><input type="text" id="user_question" name="user_question" class="form-control" placeholder="请输入您的密保问题">
+			</li>
+			<li>
+				<label>密保答案</label><input type="text" id="user_answer" name="user_answer" class="form-control" placeholder="请输入您的密保答案">
+			</li>
+			<li>
+				<label>新的密码</label><input type="password" id="user_pwd" name="user_pwd" class="form-control" placeholder="请输入您的新密码">
+			</li>
+			<li>
+				<label>确认密码</label><input type="password" id="user_pwd2" name="user_pwd2" class="form-control" placeholder="请输入您的确认密码">
+			</li>
+			<li>
+				<label>验证码</label><input type="text" class="form-control w150" id="verify" name="verify" placeholder="请输入验证码">
+				<img class="fr m-hi" src="{:url('verify/index')}" onClick="this.src=this.src+'?'"  alt="单击刷新" />
+			</li>
+			<li>
+			<input type="button" id="btn_submit" class="btn btn-lg btn-block btn-primary" value="立即找回">
+			</li>
+		</form>
+		</ul>
+    <div class="text-center">
+    	<a class="reg-a-m" href="{:url('user/login')}">想起密码了？直接登录</a>
+    </div>
+	</div>
+	</div>
+  </div>
+</div>
+						
+						<div class="article-bg"></div>
+						<div class="article-bg01"></div>
+					</div>
+				</div>
+			</div>
+		</main>
+
+<!-- // sign-box#regbox end -->
+<script type="text/javascript">
+
+	$(function(){
+		$("body").bind('keyup',function(event) {
+			if(event.keyCode==13){ $('#btnLogin').click(); }
+		});
+		$('#btn_submit').click(function() {
+			if ($('#user_name').val()  == '') { alert('请输入用户！'); $("#user_name").focus(); return false; }
+			if ($('#user_pwd').val()  == '') { alert('请输入密码！'); $("#user_pwd").focus(); return false; }
+			if ($('#verify').val()  == '') { alert('请输入验证码！'); $("#verify").focus(); return false; }
+
+			$.ajax({
+				url: "{:url('user/findpass')}",
+				type: "post",
+				dataType: "json",
+				data: $('#fm').serialize(),
+				beforeSend: function () {
+					$("#btn_submit").css("background","#fd6a6a").val("loading...");
+				},
+				success: function (r) {
+					if(r.code==1){
+						location.href="{:url('user/index')}";
+					}
+					else{
+						alert(r.msg);
+					}
+				},
+				complete: function () {
+					$('#verify').click();
+					$("#btn_submit").css("background","#fa4646").val("立即找回");
+				}
+			});
+
+		});
+	});
+
+</script>
+{include file="public/foot" /}
+</body>
+</html>

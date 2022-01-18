@@ -1,0 +1,24 @@
+<div class="popup popup-report none" id="report-popup">
+  <div class="popup-icon"><img src="{$maccms.path_tpl}static/picture/report.svg"></div>
+  <div class="popup-header">
+    <h2 class="popup-title">我要报错</h2>
+  </div>
+  <div class="popup-main">
+    <div class="report-box">
+      <form class="gbook_form">
+        <input type="hidden" name="gbook_rid" value="{$param.id}">
+        <p>如遇影片无法播放，可能存在网络拥堵等情况，可尝试<strong>切换节点</strong>或<strong>刷新</strong>页面。</p>
+        <p>尝试后以下影片仍无法播放：</p>
+        <textarea class="report-content" name="gbook_content">
+{$obj['vod_play_list'][$param['sid']]['player_info']['show']}线路 - 《{$obj.vod_name}》
+ {$maccms['site_url']}{:mac_url_vod_play($obj,['sid'=>$param.sid,'nid'=>$param.nid])}</textarea>
+      
+             <p class="verify-box"><input class="report-content report-input" name="verify" type="text" autocomplete="off">
+             <img class="report-verify" src="{:mac_url('verify/index')}" onClick="this.src+='?'" ></p>
+          
+                <input type="button" class="gbook_submit popup-btn" value="确认无误，提交">
+      </form>
+    </div>
+  </div>
+  <div class="close-popup"><i class="icon-close-o"></i></div>
+</div>

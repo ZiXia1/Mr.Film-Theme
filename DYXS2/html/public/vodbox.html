@@ -1,0 +1,29 @@
+                <div class="module-item">
+				<div class="module-item-cover">
+					<div class="module-item-pic">
+						<a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" >
+							<i class="icon-play"></i>
+						</a>
+						<img class="lazy lazyloaded"  data-src="{$vo.vod_pic|mac_url_img}" src="{:mac_url_img($dyxsst.dycms.s1.pic)}"  alt="{$vo.vod_name}">
+						<div class="loading"></div>
+					</div>
+					<div class="module-item-caption">
+						<span>{$vo.vod_year}</span>
+						<span class="video-class">{$vo.type.type_name}</span>
+						<span>{$vo.vod_area}</span>
+					</div>
+					<div class="module-item-content">
+						<div class="module-item-style video-name">
+							<a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a>
+						</div>
+						<div class="module-item-style video-tag">
+						{$vo.vod_actor|mac_default='未知'|mac_url_create='actor'|}
+						</div>
+						<div class="module-item-style video-text">{$vo.vod_blurb}</div>
+					</div>
+				</div>
+				<div class="module-item-titlebox">
+					<a href="{:mac_url_vod_detail($vo)}" class="module-item-title" title="{$vo.vod_name}">{$vo.vod_name}</a>
+				</div>
+				<div class="module-item-text">{if condition="$vo.vod_remarks neq ''"}{$vo.vod_remarks}{elseif condition="$vo.vod_serial gt 0"}第{$vo.vod_serial}集{else /}已完结{/if}</div>
+			</div>

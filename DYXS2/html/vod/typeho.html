@@ -1,0 +1,14 @@
+    {if$obj.type_extend.area}
+         <div class="module module-bg">
+      <div class="module-heading">
+        <h2 class="module-title">热播{$obj.type_name}</h2>
+      </div>
+      <div class="module-list module-lines-list">
+        <div class="module-items">
+         {maccms:vod num="16" type="current" order="desc" by="hits"}  
+	    {include file="public/vodbox"}
+		{/maccms:vod}     
+       </div>
+      </div>
+    </div>
+    {/if} 

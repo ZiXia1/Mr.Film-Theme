@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>{$maccms.site_name} - 地图</title>
+    <meta name="keywords" content="{$maccms.site_keywords}" />
+    <meta name="description" content="{$maccms.site_description}" />
+    {include file="public/include"}
+</head>
+<body class="page">
+{include file="public/head1"}
+<main id="main" class="wrapper">
+  <div class="content">
+      	{maccms:type ids="parent" order="asc" by="sort" id="vo" key="key" flag="vod"}		
+        <div class="map-box box">
+      <div class="module-heading">
+        <h2 class="module-title">{$vo.type_name}</h2>
+        <a class="more" href="{:mac_url_type($vo)}">查看<span class="symbol-arrow">›</span></a></div>
+        	{if condition="!$vo.childids eq '' "}
+         <div class="library-box scroll-box">
+        <div class="scroll-content">
+            <a class="library-item library-item-first selected" href="{:mac_url_type($vo,[],'show')}">全部类型</a>
+                    <div class="library-list">
+                      {maccms:type parent="'.$vo['type_id'].'" order="asc" by="sort" id="vo2" key="key2"}
+                        <a class="library-item" href="{:mac_url_type($vo2,[],'show')}">{$vo2.type_name}</a>
+                       {/maccms:type}	
+                      </div>
+        </div>
+      </div>
+      	{/if}
+      		{if $vo.type_extend.class}
+            <div class="library-box scroll-box">
+        <div class="scroll-content"><a class="library-item library-item-first selected" href="{:mac_url_type($vo,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>'','order'=>$param['order'],'by'=>$param['by'] ],'show')}">全部剧情</a>
+                     <div class="library-list">
+                       {maccms:foreach name=":explode(',',$vo.type_extend.class)" id="vo2" key="key2"}   
+                        <a class="library-item" href="{:mac_url_type($vo,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$vo2,'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a>
+                         {/maccms:foreach}
+                      </div>
+        </div>
+      </div>
+      	{/if}
+      		{if $vo.type_extend.area}
+      <div class="library-box scroll-box">
+        <div class="scroll-content"><a class="library-item library-item-first selected" href="{:mac_url_type($vo,['area'=>'','lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">全部地区</a>
+          <div class="library-list">
+             {maccms:foreach name=":explode(',',$vo.type_extend.area)" id="vo2" key="key2"}     
+             <a class="library-item" href="{:mac_url_type($vo,['area'=>$vo2,'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a>
+                 {/maccms:foreach}  
+          </div>
+        </div>
+      </div>
+      	{/if}
+      		{if $vo.type_extend.year}
+      <div class="library-box scroll-box">
+        <div class="scroll-content"><a class="library-item library-item-first selected" href="{:mac_url_type($vo,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>'','level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">全部年份</a>
+          <div class="library-list">
+           {maccms:foreach name=":explode(',',$vo.type_extend.year)" id="vo2" key="key2"}
+            <a class="library-item" href="{:mac_url_type($vo,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$vo2,'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a>
+             {/maccms:foreach}
+           </div>
+        </div>
+      </div>
+      {/if}
+    </div>
+
+		{/maccms:type}
+      </div>
+</main>
+{include file="public/foot"}
+</body>
+</html>

@@ -1,0 +1,52 @@
+       <div class="module-search-item">
+            <div class="video-cover">
+              <div class="module-item-cover">
+                <div class="module-item-pic"><a href="{:mac_url_vod_play($vo)}" title="立刻播放{$vo.vod_name}"><i class="icon-play"></i></a><img class="lazy lazyload" data-src="{$vo.vod_pic|mac_url_img}" src="{:mac_url_img($dyxsst.dycms.s1.pic)}" alt="{$vo.vod_name}">
+                  <div class="loading"></div>
+                </div>
+              </div>
+            </div>
+            <div class="video-info">
+              <div class="video-info-header"><a class="video-serial" href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{if condition="$vo.vod_remarks neq ''"}{$vo.vod_remarks}{elseif condition="$vo.vod_serial gt 0"}第{$vo.vod_serial}集{else /}已完结{/if}</a>
+                <h3><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a></h3>
+                <div class="video-info-aux">
+                <a href="{if$vo.type_1!=''}{:mac_url_type($vo.type_1)}{else}{:mac_url_type($vo.type)}{/if}" title="{if$vo.type_1!=''}{$vo.type_1.type_name}{else}{$vo.type.type_name}{/if}" class="tag-link"><span class="video-tag-icon">
+                    {if condition="$vo.type_id_1 eq 1||$vo.type_id eq 1"}
+                    <i class="icon-cate-dy"></i>
+                    {elseif condition="$vo.type_id_1 eq 2||$vo.type_id eq 2"}
+                     <i class="icon-cate-ds"></i>
+                      {elseif condition="$vo.type_id_1 eq 3||$vo.type_id eq 3"}
+                      <i class="icon-cate-zy"></i>
+                        {elseif condition="$vo.type_id_1 eq 4||$vo.type_id eq 4"}
+                     <i class="icon-cate-dm"></i>
+                    {else}
+                      {/if}
+                    
+                    {if$vo.type_1!=''}{$vo.type_1.type_name}{else}{$vo.type.type_name}{/if}</span></a>
+                	<div class="tag-link">{$vo.vod_year|mac_url_create='year','vod','search'}</div>
+                  <div class="tag-link">{$vo.vod_area|mac_url_create='area','vod','search'}</div>
+                 </div>
+              </div>
+              <div class="video-info-main">
+                  <div class="video-info-items"><span class="video-info-itemtitle">导演：</span>
+                 	<div class="video-info-item video-info-actor"><span class="slash">/</span>
+					    {$vo.vod_director|mac_default='未知'|mac_url_create='director','vod','search','<span class="slash">/</span>'}
+						</div>
+                </div>
+                <div class="video-info-items"><span class="video-info-itemtitle">主演：</span>
+                 <div class="video-info-item video-info-actor"><span class="slash">/</span>
+						{$vo.vod_actor|mac_default='未知'|mac_url_create='actor','vod','search','<span class="slash">/</span>'}
+						</div>
+                </div>
+                  <div class="video-info-items"><span class="video-info-itemtitle">剧情：</span>
+                  <div class="video-info-item">{$vo.vod_blurb}</div>
+                </div>
+              </div>
+              <div class="video-info-footer">
+                 <a href="{:mac_url_vod_play($vo)}" class="btn-important btn-base" title="立刻播放{$vo.vod_name}"><i class="icon-play"></i><strong>立即播放</strong></a>
+              {notempty name="vo[vod_down_from]"}
+                 <a href="{:mac_url_vod_detail($vo)}" class="btn-aux btn-aux-o btn-base" title="下载{$vo.vod_name}"><i class="icon-download"></i><strong>下载</strong></a>
+               	{/notempty}
+              </div>
+            </div>
+          </div>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>充值卡充值 - 会员中心 - {$maccms.site_name}</title>
+	<meta name="keywords" content="{$maccms.site_keywords}"/>
+	<meta name="description" content="{$maccms.site_description}"/>
+	{include file="public/include"}
+	{include file="user/include"}
+</head>
+<body class="article page">
+{include file="public/head1"}
+<main id="main" class="wrapper">
+			<div class="content">
+				<div>
+					<h1 class="page-title">个人中心-下载记录</h1>
+					<div class="box">
+    <div class="row"> 
+    	<div class="col-md-wide-25 col-sm-wide-1 col-xs-1 padding-0 hidden-sm hidden-xs">
+    		{include file="user/head"}					
+    	</div>
+    	<div class="col-md-wide-75 col-sm-wide-1 col-xs-1 dyxs-pannel-side">
+    		<div class="dyxs-pannel dyxs-pannel-bg clearfix">
+				<div class="dyxs-pannel-box clearfix">
+					<div class="dyxs-pannel_bd clearfix">
+						<div class="dyxs-pannel_hd">
+							<div class="dyxs-pannel__head active bottom-line clearfix">
+								<h3 class="title">
+									在线充值
+								</h3>
+							</div>																		
+						</div>
+						<div class="dyxs-pannel_bd clearfix">
+							<form method="post" target="_blank" action="{:url('user/gopay')}">
+								<input type="hidden" name="order_id" value="{$info.order_id}">
+								<input type="hidden" name="order_code" value="{$info.order_code}">
+								<div class="dyxs-user__form col-pd clearfix">
+									<p><span class="xiang active">订单编号：</span>
+										{$info.order_code}
+									</p>
+									<p class="top-line-dot"><span class="xiang active">订单金额：</span>
+										<b class="text-red">{$info.order_price}元</b>
+									</p>
+									<p class="top-line-dot"><span class="xiang active">支付方式：</span>
+										<select name="payment" id="payment">
+											<option value ="">请选择...</option>
+											{if condition="$config['alipay']['appid'] neq ''"}
+											<option value ="alipay">支付宝支付</option>
+											{/if}
+											{if condition="$config['weixin']['appid'] neq ''"}
+											<option value="weixin">微信支付</option>
+											{/if}
+											{if condition="$config['codepay']['appid'] neq ''"}
+											<option value="codepay">码支付</option>
+											{/if}
+											{if condition="$config['zhapay']['appid'] neq ''"}
+											<option value="zhapay">幻兮支付</option>
+											{/if}
+										</select>
+									</p>
+									<p class="top-line-dot" id="paytype_box" style="display:none;">
+										<span class="xiang">支付类型：</span>
+										<select class="paytype" id="paytype" name="paytype">
+										</select>
+									</p>
+									<p class="top-line-dot"><span class="xiang"></span><input type="submit" id="btn_submit" class="btn btn-primary" value="确认"></p>
+								</div>	
+							</form>
+						</div>		
+					</div>
+				</div>
+			</div>
+   		</div>
+    </div>
+						<div class="article-bg"></div>
+						<div class="article-bg01"></div>
+					</div>
+				</div>
+			</div>
+		</main>
+<script>
+	var codepay_type = '{maccms:foreach name=":explode(',',$config.codepay.type)"}<option value ="{$vo}">{if condition="$vo==1"}支付宝二维码{elseif condition="$vo==2"/}QQ钱包二维{elseif condition="$vo==3"/}微信二维码{/if}</option>{/maccms:foreach}';
+	var zhapay_type ='{maccms:foreach name=":explode(',',$config.zhapay.type)"}<option value ="{$vo}">{if condition="$vo==1"}微信{elseif condition="$vo==2"/}支付宝{/if}</option> {/maccms:foreach}';
+
+	$("#payment").change(function() {
+		$('#paytype').html('');
+		if($("#payment").val()=="codepay" || $("#payment").val()=="zhapay"){
+			if($("#payment").val()=="codepay") {
+				$('#paytype').html(codepay_type);
+			}
+			if($("#payment").val()=="zhapay") {
+				$('#paytype').html(zhapay_type);
+			}
+
+			$("#paytype_box").slideDown();
+		}
+		else{
+			$("#paytype_box").slideUp();
+		}
+	});
+
+	$(".paytype").change(function() {
+		$('#paytype').val( $(this).val() );
+	});
+</script>
+{include file="public/foot"}
+</body>
+</html>

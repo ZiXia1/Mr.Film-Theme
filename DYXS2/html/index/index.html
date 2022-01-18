@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>{$maccms.site_name}</title>
+    <meta name="keywords" content="{$maccms.site_keywords}" />
+    <meta name="description" content="{$maccms.site_description}" />
+     {include file="public/include"}
+</head>
+<body class="homepage" >
+    
+ {include file="public/head"}       
+	     
+<main id="index-main" class="wrapper">
+	<div class="content">
+	    {include file="index/slide"}	 
+
+	<!--AD1-->
+	{if condition="$dyxsst['dycms']['s3']['ad1'] eq 1"}
+	<div class="index-recommend recommend-list"><a href="{$dyxsst.dycms.s3.ad1_url}" target="_blank"><div class="pc"><img src="{:mac_url_img($dyxsst.dycms.s3.ad1_pc)}"></div><div class="phone"><img src="{:mac_url_img($dyxsst.dycms.s3.ad1_wap)}"></div></a></div>
+	{/if}
+	<!---->
+	    
+	     {include file="index/hot"}	 
+	     
+	     {include file="index/list"} 
+	     
+	</div>
+</main>
+         {include file="index/links"} 
+
+         {include file="public/foot"} 
+</body>
+</html>

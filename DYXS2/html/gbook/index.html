@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>留言板 - {$maccms.site_name}</title>
+    {include file="public/include"}
+    <link href="{$maccms.path_tpl}static/css/dyxs.css" rel="stylesheet" type="text/css">
+        <script>
+        $(function(){
+            MAC.Gbook.Login = {$gbook.login};
+            MAC.Gbook.Verify = {$gbook.verify};
+            MAC.Gbook.Init();
+        });
+    </script>
+</head>
+<body class="article page">
+{include file="public/head1"}
+<main id="main" class="wrapper">
+			<div class="content">
+				<div>
+					<h1 class="page-title">求片留言</h1>
+					<div class="box">
+    <div class="row">
+	    <div class="col-lg-wide-3 col-xs-1">
+	     	<div class="dymr dymr-bg clearfix">
+	     		<div class="dymr-box clearfix"> 
+	     			<div class="dymr_hd">
+						<div class="dymr__head clearfix">
+							<h3 class="title">
+								我要留言
+							</h3>						
+						</div>																		
+					</div>
+	     			<div class="col-pd clearfix">
+	     				 <form class="gbook_form">   	     					
+	     				<ul class="gbook-form">	
+							<li>
+								<textarea class="form-control" rows="5" name="gbook_content" placeholder="输入留言内容"></textarea>
+							</li>						
+							{if condition="$gbook.verify eq 1"}
+							<li>
+								<input type="text" name="verify" class="mac_verify form-control" placeholder="验证码" style="width: 80px; display: inline-block; margin-right: 10px;">
+							</li>
+							{/if}
+							<li>
+								<input class="btn btn-primary pull-right gbook_submit"type="button" value="提交" ><input type="reset" value="重新留言" class="btn btn-default" />
+							</li>
+	     				</ul>
+	     				</form>
+	     			</div>
+	     		</div>
+	     	</div>
+	    </div>
+	    <div class="col-lg-wide-7 col-xs-1">
+			{maccms:gbook num="10" paging="yes" order="desc" by="id"}
+	    	<div class="dymr dymr-bg clearfix">
+	    		<div class="dymr-box clearfix">
+	    			<div class="col-pd">
+	    				<div class="bottom-line">
+	    					<span class="text-muted pull-right">{$vo.gbook_ip|mac_long2ip}</span>
+	    					<h4 class="title" style="margin: 0 0 10px; padding-bottom: 10px;">{$vo.gbook_name}</h4>
+	    				</div>
+	    				<p class="con text-over">{$vo.gbook_content}</p>
+	    				{if condition="$vo.gbook_reply_time gt 0"}
+						<p class="text-red text-over">管理员回复：{$vo.gbook_reply}</p>
+						{/if}
+	    				<p class="text-muted font-12">{$vo.gbook_time|date='Y-m-d H:i:s',###}</p>													
+	    			</div>   	    			  	    			
+	    		</div>
+	    	</div>
+	    	{/maccms:gbook}						
+	     {include file="public/paging"}
+	    </div>
+    </div>
+						<div class="article-bg"></div>
+						<div class="article-bg01"></div>
+					</div>
+				</div>
+			</div>
+		</main>
+ {include file="public/foot"} 
+</body>
+</html>

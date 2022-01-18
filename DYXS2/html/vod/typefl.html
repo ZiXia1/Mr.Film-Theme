@@ -1,0 +1,14 @@
+ {maccms:type parent="current" order="asc" by="sort"}
+        <div class="module module-bg">
+      <div class="module-heading">
+        <h2 class="module-title"><a href="{:mac_url_type($vo,[],'type')}" title="{$vo.type_name}">{$vo.type_name}</a></h2>
+        <a class="more" href="{:mac_url_type($vo,[],'type')}" title="更多{$vo1.type_name}">更多{$vo.type_name}<i class="icon-arrow-right-o"></i></a></div>
+      <div class="module-list module-line-list">
+        <div class="module-items">
+        {maccms:vod num="32" type="'.$vo['type_id'].'"  order="desc" by="time" }
+	    {include file="public/vodbox"}
+		{/maccms:vod}        
+          </div>
+      </div>
+    </div>
+     {/maccms:type}

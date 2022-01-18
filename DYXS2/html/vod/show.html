@@ -1,0 +1,35 @@
+<!DOCTYPE html >
+<html lang="zh-cn">
+ <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+   <title>最新{$obj.type_name}-推荐{$obj.type_name}-第{$param.page}页筛选-{$maccms.site_name}</title>
+    <meta name="keywords" content="{$obj.type_key}">
+    <meta name="description" content="{$obj.type_des}">
+  {include file="public/include"}
+ </head>
+ <body class="library page">
+   {include file="public/head1"}   <!-- 头部 -->
+  <main id="main" class="wrapper">
+	<div class="content">
+		<div class="page-heading">
+			<h1 class="page-title">影片库</h1>
+			{include file="vod/screen"}   <!-- 筛选 -->
+	    </div>
+		<div class="module">
+			<div class="module-list">
+				<div class="module-items">
+				{maccms:vod num="72" paging="yes" pageurl="vod/show" type="current" order="desc" by="time"}
+				{include file="public/vodbox"}
+		        {/maccms:vod} 
+				</div>
+			</div>
+		    {include file="public/paging"} <!-- 分页筛选 -->
+		</div>
+	</div>
+</main>
+ {include file="public/foot"} <!-- 底部-->
+ <script>
+  $(".mac_total").text('{$__PAGING__.record_total}');
+</script>
+ </body>

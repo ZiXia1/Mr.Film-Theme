@@ -1,0 +1,41 @@
+{notempty name="obj[vod_down_from]"}
+<div class="module" id="download-list" name="download-list">
+	<div class="module-heading">
+		<h2 class="module-title" title="{$obj.vod_name}的影片下载列表">影片下载</h2>
+		<div class="module-tab module-player-tab"><input type="hidden" name="downtab" id="downtab" class="module-tab-input"><label class="module-tab-name"><span class="module-tab-value">{$obj['vod_down_list'][$param['sid']]['player_info']['show']}</span><i class="icon-arrow-bottom-o"></i></label>
+			<div class="module-tab-items">
+				<div class="module-tab-title">影片资源版本<span class="close-drop"><i class="icon-close-o"></i></span></div>
+				<div class="module-tab-content">
+				     {maccms:foreach name="obj.vod_down_list" id="vo" key="key"}
+					<div class="module-tab-item downtab-item {if condition="$key eq 1"} selected{/if}"><span data-dropdown-value="{$vo.player_info.show}">{$vo.player_info.show}</span><small>{$vo.url_count}</small></div>
+					 {/maccms:foreach}
+				</div>
+			</div>
+		</div>
+		<div class="shortcuts-mobile-overlay"></div>
+	</div>
+	<div class="module-list module-player-list sort-list module-downlist selected">
+		<div class="scroll-box-y">
+		    {maccms:foreach name="obj.vod_down_list" id="vo" key="key"}
+			<div class="module-row-one">
+			       {maccms:foreach name="vo.urls" id="vo2" key="key2"}
+				<div class="module-row-info">
+					<a class="module-row-text copy" href="javascript:;" data-clipboard-text="{$vo2.url}" title="复制《{$obj.vod_name}》{$vo2.name}下载地址"><i class="icon-video-file"></i>
+						<div class="module-row-title">
+							<h4>{$obj.vod_name} - {$vo2.name}</h4>
+							<p>{$vo2.url}</p>
+						</div>
+					</a>
+					<div class="module-row-shortcuts">
+						<a class="btn-pc btn-down" href="{$vo2.url}" title="下载《{$obj.vod_name}》{$vo2.name}"><i class="icon-download"></i><span>下载</span></a>
+						<a class="btn-copyurl copy" href="javascript:;" data-clipboard-text="{$vo2.url}" title="复制《{$obj.vod_name}》{$vo2.name}下载地址"><i class="icon-url"></i><span class="btn-pc">复制链接</span></a>
+					</div>
+				</div>
+				    {/maccms:foreach}
+			</div>
+			 {/maccms:foreach}
+		</div>
+	</div>
+</div>
+	
+{/notempty}

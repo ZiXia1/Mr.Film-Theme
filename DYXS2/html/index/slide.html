@@ -1,0 +1,66 @@
+	{if condition="$dyxsst['dycms']['s2']['slide'] eq 1"}
+<script type="text/javascript"  src="{$maccms.path_tpl}static/js/swiper-bundle.min.js"></script>
+<link rel="stylesheet" href="{$maccms.path_tpl}static/css/swiper-bundle.min.css" type="text/css">
+   <div class="swiper-container" style="margin-bottom: 20px;">
+      <div class="swiper-wrapper">
+          {maccms:vod num="8" type="all" order="desc" by="time" level="9"}
+         <div class="swiper-slide">
+        <a class="dymr banner" href="{:mac_url_vod_detail($vo)}" style="background: url({$vo.vod_pic_slide|mac_url_img}) center no-repeat;  background-size: cover;">
+          <div class="txt-info">
+            <p class="gate"><span>{$vo.type.type_name}</span></p>
+            <p class="name">{$vo.vod_name}</p>
+            <p class="info">{if condition="$vo.vod_remarks neq ''"}{$vo.vod_remarks}{elseif condition="$vo.vod_serial gt 0"}第{$vo.vod_serial}集{else /}已完结{/if} </p>
+          </div>
+          </a>
+        </div>
+           	{/maccms:vod}		  
+        			
+      </div>
+      <!-- 如果需要分页器 -->
+      <div class="swiper-pagination"></div>
+
+      <!-- 如果需要导航按钮 -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+
+    </div>
+    
+     <script>
+       var swiper = new Swiper('.swiper-container', {
+            //direction: 'vertical', // 垂直切换选项
+            direction: 'horizontal',//水平方向
+            loop: true, // 循环模式选项
+
+            autoplay: true,//等同于以下设置
+            autoplay: {
+                delay: 3000,
+                stopOnLastSlide: false,
+                disableOnInteraction: false,//改为false,点击按钮可以继续动
+            },
+
+
+            // 如果需要分页器
+            pagination: {
+                el: '.swiper-pagination',
+				 clickable: true,
+            },
+
+            // 如果需要前进后退按钮
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+
+            // 如果需要滚动条
+            scrollbar: {
+                el: '.swiper-scrollbar',
+            },
+        })        
+        
+    </script>
+    {/if}
+<style type="text/css">
+.dymr{display: block; position: relative; padding-top: 150%;  background-size: cover;    border-radius: 8px;}
+	.dymr.banner{ padding-top: 30%;  }
+	@media (max-width:767px){.dymr.banner{ padding-top: 45%;}}
+</style>

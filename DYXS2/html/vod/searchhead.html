@@ -1,0 +1,77 @@
+<header id="header" class="wrapper">
+  <div class="nav content">
+     <div class="brand"><a href="{$maccms.path}" class="logo" title="{$maccms.site_name}"><img src="{$maccms.path_tpl}static/image/logo.png" alt="{$maccms.site_name}"></a></div>
+    <div class="nav-search"></div>
+    <nav class="nav-menu">
+      <ul class="nav-menu-items">
+      <li class="nav-menu-item {if condition="$maccms.aid eq 1"}selected{/if}">
+		<a href="{$maccms.path}" title="{$maccms.site_name}首页"><i class="icon-home"></i>首页</a>
+	</li>
+      {maccms:type  order="asc" by="sort" ids="parent" flag="vod"}			
+	    <li class="nav-menu-item {if condition="($vo.type_id eq $GLOBALS['type_id'] || $vo.type_id eq $GLOBALS['type_pid'])"}selected{/if}">
+		<a class="nav-link" href="{:mac_url_type($vo)}"><span class="nav-menu-item-name">
+		    	            {if condition="$vo.type_id eq 1"}
+	                        <i class="icon-cate-dy"></i>
+	                        {elseif condition="$vo.type_id eq 2"}
+	                        <i class="icon-cate-ds"></i>
+	                        {elseif condition="$vo.type_id eq 4"}
+	                        <i class="icon-cate-dm"></i>
+	                        {else}
+	                        <i class="icon-cate-zy"></i>
+	                        {/if}
+		    {$vo.type_name} </span> </a>
+		</li>
+		{/maccms:type}	
+		<li class="nav-menu-item domain"><span class="nav-menu-item-name"><i class="icon-domain"></i>网址</span><em>+</em></li>
+				<li class="space-line-bold"></li>
+				<li class="nav-menu-item">
+				<a class="nav-menu-item-name"  href="{:mac_url('label/app')}" title="下载{$maccms.site_name}APP"><i class="icon-app"></i>APP</a>
+				</li>
+        <li class="nav-menu-item drop"><span class="nav-menu-icon"><i class="icon-all"></i></span>
+          <div class="drop-content sub-block">
+            <div class="drop-content-box grid-box">
+              <ul class="drop-content-items grid-items">
+                <li class="grid-item"><a href="{$maccms.path}"><i class="icon-home"></i>
+                  <div class="grid-item-name" title="{$maccms.site_name}首页">首页</div>
+                  </a></li>
+                   {maccms:type  order="asc" by="sort" ids="parent" flag="vod"}			
+					<li class="grid-item">
+					<a href="{:mac_url_type($vo)}" title="{$vo.type_name}">
+					<i class="{switch name="vo.type_id"}{case value="1"}icon-cate-dy{/case}{case value="2"}icon-cate-ds{/case}{case value="3"}icon-cate-zy{/case}{case value="4"}icon-cate-dm{/case}{/switch}"></i>
+					<div class="grid-item-name">{$vo.type_name}</div>
+					</a>
+					</li>
+					{/maccms:type}	         
+                    <li class="grid-item domain">
+								<a href="javascript:;"><i class="icon-domain"></i>
+								<div class="grid-item-name" title="网址">网址</div>
+								</a>
+								</li>
+								<li class="grid-item grid-more">
+									<a class="grid-more-link"  href="{:mac_url_type($obj,['id'=>1],'show')}" title="查看全部影片">
+										<div class="grid-item-name">全部影片</div>
+									</a>
+								</li>
+							    <li class="grid-item grid-more android">
+								<a href="{:mac_url('label/app')}" class="grid-more-link" title="下载{$maccms.site_name}APP">
+								<div class="grid-item-name">下载客户端</div>
+								</a>
+								</li>         
+               </ul>
+            </div>
+          </div>
+          <div class="shortcuts-mobile-overlay"></div>
+        </li>
+        <li class="space-line-bold"></li>
+        <li class="nav-menu-item drop"><span class="nav-menu-icon"><i class="icon-watch-history"></i></span>
+          <div class="drop-content drop-history">
+            <div class="drop-content-box">
+              <ul class="drop-content-items" id="history"><li class="list-item list-item-title"><a href="" class="playlist historyclean"><i class="icon-clear"></i></a><strong>我的观影记录</strong></li></ul>
+            </div>
+          </div>
+          <div class="shortcuts-mobile-overlay"></div>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

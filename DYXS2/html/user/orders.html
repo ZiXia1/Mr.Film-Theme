@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>订单记录 - 会员中心 -{$maccms.site_name}</title>
+	<meta name="keywords" content="{$maccms.site_keywords}"/>
+	<meta name="description" content="{$maccms.site_description}"/>
+	{include file="public/include"}
+	{include file="user/include"}
+</head>
+<body class="article page">
+{include file="public/head1"}
+<main id="main" class="wrapper">
+			<div class="content">
+				<div>
+					<h1 class="page-title">个人中心-订单记录</h1>
+					<div class="box">
+    <div class="row"> 
+    	<div class="col-md-wide-25 col-sm-wide-1 col-xs-1 padding-0 hidden-sm hidden-xs">
+    		{include file="user/head"}					
+    	</div>
+    	<div class="col-md-wide-75 col-sm-wide-1 col-xs-1 dyxs-pannel-side">
+    		<div class="dyxs-pannel dyxs-pannel-bg clearfix">
+				<div class="dyxs-pannel-box clearfix">
+					<div class="dyxs-pannel_bd clearfix">
+						<div class="dyxs-pannel_hd">
+							<div class="dyxs-pannel__head active bottom-line clearfix">
+								<h3 class="title">
+									充值记录
+								</h3>
+								<ul class="navuser nav-tabs pull-right">
+									<li class="active"><a href="{:url('user/orders')}">在线充值记录</a></li>
+									<li><a href="{:url('user/cards')}">充值卡记录</a></li>
+								</ul>
+							</div>																		
+						</div>
+						<div class="dyxs-pannel_bd clearfix">
+							<form id="form1" name="form1" method="post">
+								<ul class="dyxs-vodlist__text striped to-color col-pd clearfix">
+									<li class="striped-head clearfix">
+										<span class="col-md-wide-10 col-sm-wide-10 hidden-xs">编号</span>
+										<span class="col-md-wide-45 col-sm-wide-45 col-xs-wide-7">单号</span>
+										<span class="col-md-wide-10 col-sm-wide-10 hidden-xs">金额</span>
+										<span class="col-md-wide-10 col-sm-wide-10 hidden-xs">积分</span>
+										<span class="col-md-wide-15 col-sm-wide-15 hidden-xs">时间</span>
+										<span class="col-md-wide-10 col-sm-wide-10 col-xs-wide-3 text-right">操作</span>
+									</li>
+									{volist name="list" id="vo"}
+									<li class="clearfix">										
+										<span class="col-md-wide-10 col-sm-wide-10 hidden-xs text-muted">{$vo.order_id}</span>
+										<span class="col-md-wide-45 col-sm-wide-45 col-xs-wide-7">{$vo.order_code}</span>
+										<span class="col-md-wide-10 col-sm-wide-10 hidden-xs">-{$vo.order_price}</span>
+										<span class="col-md-wide-10 col-sm-wide-10 hidden-xs">+{$vo.order_points}</span>
+										<span class="col-md-wide-15 col-sm-wide-15 hidden-xs">{$vo.order_time|date='Y-m-d',###}</span>
+										<span class="col-md-wide-10 col-sm-wide-10 col-xs-wide-3 text-right">
+											{if condition="$vo.order_status eq 1"}<span class="text-muted">已支付</span>{else}<a class="text-red" href="{:url('user/pay')}?order_code={$vo.order_code}" class="delete">未支付</a>{/if}
+										</span>																			
+									</li>
+				  					{/volist}
+								</ul>
+							</form>
+						</div>		
+					</div>
+				</div>
+			</div>	
+			{include file="public/paging"}<!-- 翻页-->		
+    	</div>
+    </div>
+						<div class="article-bg"></div>
+						<div class="article-bg01"></div>
+					</div>
+				</div>
+			</div>
+		</main>
+{include file="public/foot"}
+</body>
+</html>

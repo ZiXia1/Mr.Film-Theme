@@ -1,0 +1,14 @@
+    {maccms:foreach  name=":explode(',',$obj.type_extend.area)" id="vo1" key="key1"} 			
+        <div class="module module-bg">
+      <div class="module-heading">
+        <h2 class="module-title">{if condition="$vo1 == $param['area']" }{:mac_data_count($obj.type_id,'all')}部{/if}{$vo1}{$obj.type_name}</h2>
+      </div>
+      <div class="module-list  {if$obj.type_extend.area}module-line-list{/if}">
+        <div class="module-items">
+     {maccms:vod num="72" type="current" area="'.$vo1.'" order="desc" by="time" paging="yes" }		
+	    {include file="public/vodbox"}
+		{/maccms:vod}        
+          </div>
+      </div>
+    </div>
+     {/maccms:foreach}  

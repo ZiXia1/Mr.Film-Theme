@@ -1,0 +1,27 @@
+{notempty name="obj[vod_rel_vod]"}
+<div class="module">
+	<div class="module-heading">
+		<h2 class="module-title" title="{$obj.vod_name}同系列影片">系列影片</h2></div>
+	<div class="module-list module-lines-list">
+		<div class="module-items scroll-box">
+			<div class="scroll-content">
+			    {maccms:vod num="6" rel="'.$obj['vod_rel_vod'].'" order="desc" by="time"}
+				<div class="module-item module-item-go">
+					<div class="module-item-cover">
+						<div class="module-item-pic">
+							<a href="{:mac_url_vod_play($vo)}" title="立刻播放{$vo.vod_name}"><i class="icon-play"></i></a><img class=" ls-is-cached  lazy lazyloaded" data-src="{$vo.vod_pic|mac_url_img}" src="{:mac_url_img($dyxsst.dycms.s1.pic)}" alt="{$vo.vod_name}">
+							<div class="loading"></div>
+						</div>
+						<div class="module-item-caption"></div>
+					</div>
+					<div class="module-item-titlebox">
+						<a href="{:mac_url_vod_detail($vo)}" class="module-item-title" title="{$vo.vod_name}">{$vo.vod_name}</a>
+					</div>
+					<div class="module-item-text"><span>{$vo.vod_year}年</span></div>
+				</div>
+				    {/maccms:vod}
+			</div>
+		</div>
+	</div>
+</div>
+{/notempty}

@@ -1,0 +1,76 @@
+		<!-- Module End -->
+		<div class="module">
+			<div class="module-heading">
+				<h2 class="module-title"><i class="icon-happy"></i> 最新影片</h2>
+				<div class="module-tab">
+					<label class="module-tab-name">
+						<span class="module-tab-value">全部</span>
+						<i class="icon-arrow-bottom"></i>
+					</label>
+					<div class="module-tab-items">
+						<div class="module-tab-title">
+							选择类型
+							<span class="close-drop">
+								<i class="icon-close-o"></i>
+							</span>
+						</div>
+						<div>
+							<span class="module-tab-item tab-item selected" data-id="0" data-name="全部">全部</span>
+							{maccms:type order="asc" by="sort" mid="1" ids="parent"}
+							<span class="module-tab-item tab-item" data-id="{$vo.type_id}" data-name="{$vo.type_name}">{$vo.type_name}</span>
+							{/maccms:type}
+						</div>
+					</div>
+				</div>
+				<div class="shortcuts-mobile-overlay"></div>
+			</div>
+			
+			<div class="module-list module-line-list tab-list selected" id="tab-list-0">
+				<div class="module-items scroll-box">
+					<div class="scroll-content">
+	                    {maccms:vod num="16" type="all" order="desc" by="time"}
+	                    	{include file="public/vodbox"}
+	                    {/maccms:vod}
+					</div>
+				</div>
+			</div>
+			
+			{maccms:type order="asc" by="sort" mid="1" ids="parent"}
+			<div class="module-list module-line-list tab-list" id="tab-list-{$vo.type_id}">
+				<div class="module-items scroll-box">
+					<div class="scroll-content">
+	                    {maccms:vod num="16" type="'.$vo['type_id'].'" order="desc" by="time"}
+	                    	{include file="public/vodbox"}
+	                    {/maccms:vod}
+					</div>
+				</div>
+			</div>
+			{/maccms:type}
+		</div>
+{maccms:type  order="asc" by="sort" ids="parent" id="vo1" key="key1"  flag="vod"}				
+<div class="module">
+	<div class="module-heading">
+		<h2 class="module-title">
+				{if condition="$vo.type_id eq 4"}
+	            <i class="icon-cate-dy"></i>
+	            {elseif condition="$vo.type_id eq 1"}
+	            <i class="icon-cate-ds"></i>
+	            {elseif condition="$vo.type_id eq 3"}
+	            <i class="icon-cate-dm"></i>
+	            {else}
+	            <i class="icon-cate-zy"></i>
+	            {/if} 		    
+		    {$vo1.type_name}</h2>
+		<a class="more" href="{:mac_url_type($vo1,[],'type')}" title="更多{$vo1.type_name}">更多{$vo1.type_name}
+		<i class="icon-arrow-right-o"></i>
+		</a>
+	</div>
+	<div class="module-list module-lines-list">
+		<div class="module-items">
+	    {maccms:vod num="16" type="'.$vo1['type_id'].'" order="desc" by="time" year=""}  
+	    {include file="public/vodbox"}
+		{/maccms:vod}
+		</div>
+	</div>
+</div>
+ {/maccms:type}

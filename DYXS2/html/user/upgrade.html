@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<title>升级会员组 - 会员中心 - {$maccms.site_name}</title>
+		<meta name="keywords" content="{$maccms.site_keywords}"/>
+		<meta name="description" content="{$maccms.site_description}"/>
+		{include file="public/include"}
+		{include file="user/include"}
+	</head>
+<body class="article page">
+{include file="public/head1"}
+<main id="main" class="wrapper">
+			<div class="content">
+				<div>
+					<h1 class="page-title">个人中心-升级会员组</h1>
+					<div class="box">
+	    <div class="row"> 
+	    	<div class="col-md-wide-25 col-sm-wide-1 col-xs-1 padding-0 hidden-sm hidden-xs">
+	    		{include file="user/head"}					
+	    	</div>
+	    	<div class="col-md-wide-75 col-sm-wide-1 col-xs-1 dyxs-pannel-side">
+	    		<div class="dyxs-pannel dyxs-pannel-bg clearfix">
+					<div class="dyxs-pannel-box clearfix">
+						<div class="dyxs-pannel_hd">
+							<div class="dyxs-pannel__head active bottom-line clearfix">
+								<h3 class="title">
+									我的会员信息
+								</h3>
+							</div>																		
+						</div>	
+						<div class="dyxs-pannel_bd clearfix">
+							<ul class="dyxs-user__form col-pd clearfix">
+								<p><span class="xiang active">所属会员组：</span><span class="text-red">[{$obj.group.group_name}]</span></p>
+								<p class="top-line-dot"><span class="xiang active">剩余积分：</span><span class="text-red">[{$obj.user_points}]</span></p>
+								<p class="top-line-dot"><span class="xiang active">到期时间：</span><span class="text-red">{if condition="$obj.group_id lt 3"}[无限期]{else}[{$obj.user_end_time|mac_day}]{/if}</span></p>									
+							</ul>																							
+						</div>								
+					</div>
+				</div>
+				<div class="dyxs-pannel dyxs-pannel-bg clearfix">
+					<div class="dyxs-pannel-box clearfix">
+						<div class="dyxs-pannel_bd clearfix">
+							<div class="dyxs-pannel_hd">
+								<div class="dyxs-pannel__head active bottom-line clearfix">
+									<h3 class="title">
+										升级会员
+									</h3>
+								</div>																		
+							</div>								
+							<form action="" method="post" name="form3" id="form3">
+							<div class="dyxs-pannel_bd clearfix">
+								{volist name="group_list" id="vo"}
+			 					{if condition="$vo.group_id gt 2"}
+								<div class="col-md-4 col-sm-2 col-xs-2">
+									<a class="grade btn btn-block btn-primary" href="javascript:;" data-id="{$vo.group_id}" data-name="{$vo.group_name}" data-points="{$vo.group_points_day}" data-long="day" style="padding: 20px;">
+										<p style="font-size: 18px;"><b>{$vo.group_name}</b></p>
+										<p>包天：{$vo.group_points_day}积分</p>
+										点击升级
+									</a>
+								</div>
+								<div class="col-md-4 col-sm-2 col-xs-2">
+									<a class="grade btn btn-block btn-primary" href="javascript:;" data-id="{$vo.group_id}" data-name="{$vo.group_name}" data-points="{$vo.group_points_week}" data-long="week" style="padding: 20px;">
+									<p style="font-size: 18px;"><b>{$vo.group_name}</b></p>
+									<p>包周：{$vo.group_points_week}积分</p>
+									点击升级
+									</a>
+								</div>
+								<div class="col-md-4 col-sm-2 col-xs-2">
+									<a class="grade btn btn-block btn-primary" href="javascript:;" data-id="{$vo.group_id}" data-name="{$vo.group_name}" data-points="{$vo.group_points_month}" data-long="month" style="padding: 20px;">
+										<p style="font-size: 18px;"><b>{$vo.group_name}</b></p>
+										<p>包月：{$vo.group_points_month}积分</p>
+										点击升级
+									</a>
+								</div>
+								<div class="col-md-4 col-sm-2 col-xs-2">
+									<a class="grade btn btn-block btn-primary" href="javascript:;" data-id="{$vo.group_id}" data-name="{$vo.group_name}" data-points="{$vo.group_points_year}" data-long="year" style="padding: 20px;">
+										<p style="font-size: 18px;"><b>{$vo.group_name}</b></p>
+										<p>包年：{$vo.group_points_year}积分</p>
+										点击升级
+									</a>
+								</div>
+								{/if}
+		 						{/volist}
+							</div>
+							</form>
+						</div>
+					</div>
+				</div>		
+	    	</div>
+	    </div>
+						<div class="article-bg"></div>
+						<div class="article-bg01"></div>
+					</div>
+				</div>
+			</div>
+		</main>
+<script type="text/javascript">
+		$('.grade').click(function(){
+			var that=$(this);
+			var group_id = that.attr('data-id');
+			var group_name = that.attr('data-name');
+			var long = that.attr('data-long');
+			var points = that.attr('data-points');
+	
+			if(confirm('确定要升级到【'+group_name+'】吗,需要花费【'+points+'】积分')) {
+				$.ajax({
+					url: "{:url('user/upgrade')}",
+					type: "post",
+					dataType: "json",
+					data: {group_id: group_id,long:long },
+					beforeSend: function () {
+						$("#btn_submit").css("background","#fd6a6a").val("loading...");
+					},
+					success: function (r) {
+						layer.msg(r.msg);
+						if (r.code == 1) {
+							location.reload();
+						}
+					},
+					complete: function () {
+						$("#btn_submit").css("background","#fa4646").val("提交");
+					}
+				});
+			}
+		});
+</script>
+{include file="public/foot"}
+</body>
+</html>

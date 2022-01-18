@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+ <head>
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+     <title>最新{$obj.type_title}-推荐{$obj.type_title}-第{$param.page}页 - {$maccms.site_name}</title>
+    <meta name="keywords" content="{$obj.type_key}" />
+    <meta name="description" content="{$obj.type_des}" />
+     {include file="public/include"}
+ </head>
+ <body   class="page">
+   {include file="public/head1"}   <!-- 头部 -->
+   <main id="main" class="wrapper">
+  <div class="content">
+        {include file="vod/typetb"} <!-- 分类页分类 -->
+    
+        {include file="vod/typeho"} <!-- 分类页热播 -->
+        
+       	{if condition="!$obj.childids eq '' "} 
+       	
+        {include file="vod/typefl"}  <!-- 有二级分类 -->
+        
+	    {else}
+	    
+        {include file="vod/typedq"}  <!-- 无二级分类显示地区 -->
+        
+         {include file="public/paging"}  <!-- 分页 -->
+         
+       {/if}   
+    </div>
+    
+    <div class="module-footer module-type">
+    <a href="{:mac_url_type($obj,[],'show')}" class="load-all" title="全部{$obj.type_name}">全部{$obj.type_name}<i class="icon-arrow-right-o"></i></a>
+    </div>
+</main>
+    {include file="public/foot"} <!-- 底部-->
+ </body>
+</html>

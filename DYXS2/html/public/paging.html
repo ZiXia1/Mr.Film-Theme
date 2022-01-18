@@ -1,0 +1,17 @@
+{if condition="$__PAGING__.page_total gt 1"}
+<div class="module-footer">
+      <div id="page">
+        <a href="{$__PAGING__.page_url|mac_url_page=1}" class="page-number page-previous" title="首页">首页</a>
+        <a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_prev}" class="page-number page-previous" title="上一页">上一页</a>
+        {maccms:foreach name="$__PAGING__.page_num" id="num"}
+        {if condition="$__PAGING__['page_current'] eq $num"}
+        <span class="page-number page-current display">{$num}</span>
+        {else}
+          <a href="{$__PAGING__.page_url|mac_url_page=$num}" class="page-number display" title="第{$num}页">{$num}</a>
+            {/if}   
+         {/maccms:foreach}
+           <a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_next}" class="page-number page-next" title="下一页">下一页</a>
+        <a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_total}" class="page-number page-next" title="尾页">尾页</a>
+      </div>
+    </div>
+{/if}

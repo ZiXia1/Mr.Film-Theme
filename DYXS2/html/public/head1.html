@@ -1,0 +1,144 @@
+<header id="header" class="wrapper">
+	<div class="nav content">
+		<div class="brand">
+		<a href="{$maccms.path}" class="logo" title="{$maccms.site_url}&nbsp;-{$maccms.site_name}"><img src="{:mac_url_img($dyxsst.dycms.s1.logo2)}" alt="{$maccms.site_name}"></a>
+		</div>
+		<div class="nav-search">
+			<form action="{:mac_url('vod/search')}">
+				<div class="search-box">
+					<input class="search-input ac_wd" id="txtKeywords" type="text" name="wd" autocomplete="off" placeholder="搜索电影、电视剧、综艺、动漫">
+					<div class="search-drop">
+						<div class="drop-content-items ac_hot none">
+							<div class="list-item list-item-title"><strong>大家都在搜这些影片</strong></div>
+							<div class="search-tag">
+							{maccms:foreach name=":explode(',',$maccms.search_hot)" id="vo2" key="key2"}
+					       	<a href="{:mac_url('vod/search',['wd'=>$vo2])}" class="{if condition=" $key2 lt 4 "}hot {else}{/if}"><i class="icon-hot"></i>{$vo2}</a>
+						    {/maccms:foreach}
+							</div>
+						</div>
+					</div>
+					<button class="search-btn search-go" type="submit"><i class="icon-search"></i></button>
+					<button class="cancel-btn" type="button">取消</button>
+				</div>
+			</form>
+		</div>
+		<nav class="nav-menu">
+			<ul class="nav-menu-items">
+				<li class="nav-menu-item {if condition="$maccms.aid eq 1"}selected{/if}">
+					<a href="{$maccms.path}" class="white " title="{$maccms.site_name}首页"><i class="icon-home"></i>首页</a>
+				</li>
+				 {maccms:type num="4" order="asc" by="sort" ids="parent" flag="vod"}			
+				<li class="nav-menu-item {if condition="($vo.type_id eq $GLOBALS['type_id'] || $vo.type_id eq $GLOBALS['type_pid'])"}selected{/if}">
+					<a class="nav-link white" href="{:mac_url_type($vo)}">
+							{if stristr($vo['type_name'],'纪录片')==true||stristr($vo['parent']['type_name'],'纪录片')==true}<i class="iconfont icon-zhibo"></i>{elseif stristr($vo['type_name'],'直播')==true||stristr($vo['parent']['type_name'],'直播')==true}<i class="iconfont icon-qiepian"></i>{elseif stristr($vo['type_name'],'美剧')==true||stristr($vo['parent']['type_name'],'美剧')==true}<i class="iconfont icon-qita"></i>{else}					    
+					    	{if condition="$vo.type_id eq 1"}
+	                        <i class="icon-cate-dy"></i>
+	                        {elseif condition="$vo.type_id eq 2"}
+	                        <i class="icon-cate-ds"></i>
+	                        {elseif condition="$vo.type_id eq 4"}
+	                        <i class="icon-cate-dm"></i>
+	                        {else}
+	                        <i class="icon-cate-zy"></i>
+	                        {/if} {/if}
+					{$vo.type_name} </a>
+				</li>
+				{/maccms:type}	
+				{if condition="$dyxsst['dycms']['s2']['diy1'] eq 1"}
+					<li class="nav-menu-item">
+					<a href="{$dyxsst.dycms.s2.diy1url}" class="white " ><i class="icon-more"></i>&nbsp;{$dyxsst.dycms.s2.diy1name}</a>
+				</li>
+				{/if}
+				{if condition="$dyxsst['dycms']['s2']['diy2'] eq 1"}
+					<li class="nav-menu-item">
+					<a href="{$dyxsst.dycms.s2.diy2url}" class="white " ><i class="icon-more"></i>&nbsp;{$dyxsst.dycms.s2.diy2name}</a>
+				</li>
+				{/if}				
+				{if condition="$dyxsst['dycms']['s2']['wz'] eq 1"}
+				<li class="nav-menu-item domain white "><i class="icon-domain"></i>网址<em>+</em></li>
+				{/if}
+				<li class="space-line-bold white "></li>
+				<li class="nav-menu-item drop">
+					<span class="nav-menu-icon">
+                        <i class="icon-watch-history  white "></i>
+                    </span>
+					<div class="drop-content drop-history">
+						<div class="drop-content-box">
+							<ul class="drop-content-items" id="history">
+								<li class="list-item list-item-title">
+									<a href="" class="playlist historyclean">
+										<i class="icon-clear"></i>
+									</a>
+									<strong>我的观影记录</strong>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="shortcuts-mobile-overlay"></div>
+				</li>
+				<li class="space-line-bold"></li>
+				<li class="nav-menu-item drop">
+					<span class="nav-menu-icon">
+                        <i class="icon-all" style="color: #fff;"></i>
+                    </span>
+					<div class="drop-content sub-block">
+						<div class="drop-content-box grid-box">
+							<ul class="drop-content-items grid-items">
+								<li class="grid-item">
+									<a href="{$maccms.path}">
+										<i class="icon-home"></i>
+										<div class="grid-item-name" title="{$maccms.site_name}首页">首页</div>
+									</a>
+								</li>
+							 {maccms:type  order="asc" by="sort" ids="parent" id="vo" key="key"}			
+								<li  class="grid-item">
+									<a href="{:mac_url_type($vo)}" title="{$vo.type_name}">
+							{if stristr($vo['type_name'],'纪录片')==true||stristr($vo['parent']['type_name'],'纪录片')==true}<i class="iconfont icon-zhibo"></i>{elseif stristr($vo['type_name'],'直播')==true||stristr($vo['parent']['type_name'],'直播')==true}<i class="iconfont icon-qiepian"></i>{elseif stristr($vo['type_name'],'美剧')==true||stristr($vo['parent']['type_name'],'美剧')==true}<i class="iconfont icon-qita"></i>{else}									    
+										<i class="{switch name="vo.type_id"}{case value="1"}icon-cate-dy{/case}{case value="2"}icon-cate-ds{/case}{case value="3"}icon-cate-zy{/case}{case value="4"}icon-cate-dm{/case}{case value="5"}iconfont icon-zixun{/case}{/case}{default/}icon-zixun{/switch}"></i>{/if}
+										<div class="grid-item-name">{$vo.type_name}</div>
+									</a>
+								</li>
+								{/maccms:type}	
+								{if condition="$dyxsst['dycms']['s2']['wz'] eq 1"}
+								<li class="grid-item">
+								<a href="{:mac_url('label/web')}"><i class="icon-domain"></i>
+								<div class="grid-item-name" title="网址">网址</div>
+								</a>
+								</li>
+								{/if}
+								{if condition="$dyxsst['dycms']['s2']['topic'] eq 1"}
+								<li class="grid-item">
+								<a href="{:mac_url('topic/index')}"><i class="iconfont icon-zhuanxiangxinxi"></i>
+								<div class="grid-item-name" title="专题">专题</div>
+								</a>
+								</li>
+								{/if}
+								<li class="grid-item grid-more">
+									<a class="grid-more-link"  href="{:mac_url_type($obj,['id'=>1],'show')}" title="查看全部影片">
+										<div class="grid-item-name">全部影片</div>
+									</a>
+								</li>
+								{if condition="$dyxsst['dycms']['s2']['app'] eq 1"}
+							    <li class="grid-item grid-more android">
+								<a href="{:mac_url('label/app')}" class="grid-more-link" title="下载{$maccms.site_name}APP">
+								<div class="grid-item-name">下载客户端</div>
+								</a>
+								</li>
+								{/if}
+							</ul>
+						</div>
+					</div>
+					<div class="shortcuts-mobile-overlay"></div>
+				</li>
+				{if condition="$dyxsst['dycms']['s2']['user'] eq 1"}
+				<li class="space-line-bold"></li>
+				<li class="nav-menu-item drop">
+				{if condition="$user.group.group_id eq 1"}
+				<a href="{:mac_url('user/login')}" class=" white " title="用户登录"><i class="iconfont icon-yonghu"></i></a>
+				{else/}
+				<a href="{:mac_url('user/index')}" class=" white " title="个人中心"><i class="iconfont icon-yonghu"></i></a>				
+				</li>
+				{/if}{/if}
+			</ul>
+		</nav>
+	</div>
+</header>

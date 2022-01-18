@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+ <head>
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+     <title>搜索结果{$param.wd}-{$maccms.site_name}</title>
+     <meta name="keywords" content="{$param.wd}-{$maccms.site_name}" />
+     <meta name="description" content="{$param.wd}-{$maccms.site_name}" />
+     {include file="public/include"}
+ </head>
+<body class="search page">
+{include file="vod/searchhead"} <!-- 头部 -->
+<main id="main" class="wrapper">
+  <div class="content">
+    <div id="search-content">
+    <form action="{:mac_url('vod/search')}">
+				<div class="search-box">
+					<input class="search-input ac_wd" id="txtKeywords" type="text" name="wd" autocomplete="off" placeholder="搜索电影、电视剧、综艺、动漫">
+					<div class="search-drop">
+						<div class="drop-content-items ac_hot none">
+							<div class="list-item list-item-title"><strong>大家都在搜这些影片</strong></div>
+							<div class="search-tag">
+							{maccms:foreach name=":explode(',',$maccms.search_hot)" id="vo2" key="key2"}
+					       	<a href="{:mac_url('vod/search',['wd'=>$vo2])}" class="{if condition=" $key2 lt 4 "}hot {else}{/if}"><i class="icon-hot"></i>{$vo2}</a>
+						    {/maccms:foreach}
+							</div>
+						</div>
+					</div>
+					<button class="search-btn search-go" type="submit"><i class="icon-search"></i></button>
+					<button class="cancel-btn" type="button">取消</button>
+				</div>
+			</form>
+      <div class="search-stat">
+        <h1>{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}</h1>
+        <h2>搜索"{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}" ，找到 <strong class="mac_total"></strong>部影视作品</h2>
+      </div>
+    </div>
+    <div class="module">
+      <div class="module-list">
+        <div class="module-items">
+            {maccms:vod num="10" paging="yes" pageurl="vod/search" order="desc" by="time"} 
+            {include file="vod/searchvodbox"}  
+            {/maccms:vod} 
+            </div>
+            {include file="public/paging"}  <!-- 分页 -->
+        
+             </div>
+         </div>
+      </div>
+</main>
+    {include file="public/foot"} <!-- 底部-->
+<script>
+  $(".mac_total").text('{$__PAGING__.record_total}');
+</script>
+ </body>
+</html>

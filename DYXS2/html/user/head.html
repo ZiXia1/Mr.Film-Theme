@@ -1,0 +1,41 @@
+<div class="dyxs-pannel dyxs-pannel-bg clearfix" >
+	<div class="dyxs-pannel-box clearfix">
+		<div class="dyxs-pannel_bd clearfix">
+			<div class="dyxs-user__name bottom-line clearfix">
+				<a class="more pull-right nonemore" href="{:url('user/info')}"><i class="icon-arrow-right-o"></i></a>
+				<img class="face" width="60" height="60" src="{$obj.user_portrait|mac_default='static/images/touxiang.png'|mac_url_img}">
+				<h3><a href="{:url('user/info')}">{$obj.user_name}</a></h3>				
+				<p class="margin-0 text-red">账户积分：{$obj.user_points}</p>
+			</div>
+			<ul class="dyxs-user__head">
+				<li><a class="bottom-line" href="{:url('user/upgrade')}">会员分组：<span class="pull-right">{$obj.group.group_name}</span></a></li>
+				<li><a class="bottom-line" href="{:url('user/upgrade')}">会员期限：<span class="pull-right">{if condition="$obj.group_id lt 3"}无限期{else}{$obj.user_end_time|mac_day}{/if}</span></a></li>
+				<li class="hidden-xs"><a class="bottom-line" href="{:url('user/index')}"><i class="icon-arrow-right-o pull-right"></i>我的资料</a></li>
+				<li class="visible-xs"><a class="bottom-line" href="{:url('user/info')}"><i class="icon-arrow-right-o pull-right"></i>修改资料</a></li>
+				<li><a class="bottom-line" href="{:url('user/favs')}"><i class="icon-arrow-right-o pull-right"></i>我的收藏</a></li>
+				<li><a class="bottom-line" href="{:url('user/plays')}"><i class="icon-arrow-right-o pull-right"></i>播放记录</a></li>
+				<li><a class="bottom-line" href="{:url('user/downs')}"><i class="icon-arrow-right-o pull-right"></i>下载记录</a></li>
+				<li><a class="bottom-line" href="{:url('user/buy')}"><i class="icon-arrow-right-o pull-right"></i>在线充值</a></li>
+				<li><a class="bottom-line" href="{:url('user/upgrade')}"><i class="icon-arrow-right-o pull-right"></i>升级会员</a></li>
+				<li><a class="bottom-line" href="{:url('user/orders')}"><i class="icon-arrow-right-o pull-right"></i>充值记录</a></li>
+		<li><a class="bottom-line share-btn" href="javascript:;" data-clipboard-text="http://{$maccms.site_url}{:mac_url('user/reg')}?uid={$obj.user_id}"><i class="icon-arrow-right-o pull-right"></i>复制推广链接</a></li>
+			</ul>
+			<p class="text-center" style="margin-top: 12px;"><a class="btn btn-default" href="{:url('user/logout')}">退出登录</a></p>
+		</div>
+	</div>
+</div>
+  <div class="shortcuts-box"><div id="shortcuts-info"></div></div>
+<script>
+	$(".face").imageUpload({
+		formAction: "{:url('user/portrait')}",
+		inputFileName:'file',
+		browseButtonValue: '修改头像',
+		browseButtonClass:'btn-face',
+		automaticUpload: true,
+		hideDeleteButton: true,
+		hover:true
+	})
+	$(".face").on("imageUpload.uploadFailed", function (ev, err) {
+		layer.msg(err);
+	});
+</script>
